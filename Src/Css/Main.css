@@ -1,0 +1,13 @@
+﻿body, html
+{
+    margin: 0;
+    padding: 0;
+    background-color: #000000;
+    text-align: center;
+}
+
+#canvas
+{
+    border: 1px dashed #cccccc;
+    margin-top: 50px;
+}
