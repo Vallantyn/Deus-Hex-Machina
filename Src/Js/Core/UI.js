@@ -28,8 +28,8 @@
 
         applyStyle(style);
 
-        cx.fillText(text, x, y);
         cx.strokeText(text, x, y);
+        cx.fillText(text, x, y);
     }
 
     this.TileButton = function (label, size, x, y, style)
@@ -43,13 +43,6 @@
 
         var h = Math.sqrt(S * S - s * s);
 
-        if (Picking.PointCircle(Input.x, Input.y, x, y, h))
-        {
-            if (Input.right) cx.strokeStyle = "#990000";
-            else if (Input.left) cx.strokeStyle = "#009900";
-            else cx.strokeStyle = "#999999";
-        }
-
         cx.beginPath();
         cx.moveTo(x+size*Math.cos(0), y+size*Math.sin(0));
 
@@ -58,9 +51,18 @@
             cx.lineTo(x + size * Math.cos(i * Math.PI / 3), y + size * Math.sin(i * Math.PI / 3));
         }
 
+        if (Picking.PointCircle(Input.x, Input.y, x, y, h))
+        {
+            if (Input.right) cx.fillStyle = "#990000";
+            else if (Input.left) cx.fillStyle = "#009900";
+            else cx.fillStyle = "#999999";
+
+            cx.fill();
+        }
+
         cx.stroke();
 
-        !!label && this.Label(label, x - cx.measureText(label).width / 2, y, {textBaseline: "middle"});
+        !!label && this.Label(label, x - cx.measureText(label).width / 2, y, style);
     }
 }());
 
