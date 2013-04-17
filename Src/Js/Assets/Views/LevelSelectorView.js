@@ -20,19 +20,21 @@
         }
     }
 
-    window.addEventListener("mousewheel", function (event)
+    function onMouseWheel(event)
     {
-        var delta = !!event.detail ? event.detail * -120 : event.wheelDelta;
-
-        offsetY += delta/3;
-    });
-
-    window.addEventListener("DOMMouseScroll", function (event)
-    {
-        var delta = !!event.detail ? event.detail * -120 : event.wheelDelta;
+        var delta = !!event.detail ? event.detail * -120 : event.wheelDelta,
+            topLimit = 0,
+            bottomLimit = -levels / 8 * h * 2 + ScreenCanvas.Canvas.height / 2;
 
         offsetY += delta / 3;
-    });
+
+        if (offsetY > topLimit) offsetY = topLimit;
+        if (offsetY < bottomLimit) offsetY = bottomLimit;
+    }
+
+    window.addEventListener("mousewheel", onMouseWheel);
+
+    window.addEventListener("DOMMouseScroll", onMouseWheel);
 
     return that;
 }
