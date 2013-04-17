@@ -1,20 +1,23 @@
 ﻿/*
 Init Loop
 */
+
+var view;
+
 window.addEventListener
 ("load"
 , function ()
 {
-    var canvas
-      , context
-      , WIDTH = 1280
-      , HEIGHT = 720;
+    var screenConfig =
+        {
+            id: "canvas",
+            width: 1280,
+            height: 720
+        }
 
-    canvas = document.getElementById("canvas");
-    context = canvas.getContext("2d");
+    view = new MainMenuView();
 
-    canvas.width = WIDTH;
-    canvas.height = HEIGHT;
+    ScreenCanvas.Init(screenConfig);
 
     Start();
 });
@@ -22,34 +25,16 @@ window.addEventListener
 End Init
 */
 
-function Start(canvas, context)
+function Start()
 {
-    /// <summary>Start function</summary>
-    /// <param name="canvas" type="HTMLCanvasElement">Canvas Element</param>
-    /// <param name="context" type="CanvasRenderingContext2D">Canvas Rendering Context</param>
-    /// <returns type="Void" />
-
-    Update(canvas, context);
+    view.Start();
+    Update();
 }
 
-function Update(canvas, context)
+function Update()
 {
-    /// <summary>Update loop</summary>
-    /// <param name="canvas" type="HTMLCanvasElement">Canvas Element</param>
-    /// <param name="context" type="CanvasRenderingContext2D">Canvas Rendering Context</param>
-    /// <returns type="Void" />
-
-    /*
-    
-    DO YOUR STUFF HERE DOOD
-    
-    */
-
-    requestAnimationFrame(function ()
-    {
-        Update(canvas, context);
-    });
-
+    view.Update();
+    requestAnimationFrame(Update);
 }
 
 /*
