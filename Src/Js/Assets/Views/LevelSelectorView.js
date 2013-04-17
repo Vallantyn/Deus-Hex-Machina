@@ -22,7 +22,9 @@
 
     window.addEventListener("mousewheel", function (event)
     {
-        offsetY += event.wheelDelta/3;
+        var delta = !!event.detail ? event.detail * 120 : event.wheelDelta;
+
+        offsetY += delta/3;
     });
 
     return that;
