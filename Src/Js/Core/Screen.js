@@ -34,6 +34,11 @@ var ScreenCanvas =
         this.onWindowResize(null);
     },
 
+    Clear: function()
+    {
+        this.Context.clearRect(0, 0, this.Canvas.width, this.Canvas.height);
+    },
+
     onWindowResize: function (event)
     {
         /// <summary>Triggered when the screen is resized.</summary>

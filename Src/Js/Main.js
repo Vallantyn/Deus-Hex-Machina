@@ -13,11 +13,11 @@ window.addEventListener
         }
 
     var view = new MainMenuView();
-    Game.scene = view;
+    Director.scene = view;
 
     ScreenCanvas.Init(screenConfig);
 
-    Game.Start();
+    Director.Start();
 });
 /*
 End Init

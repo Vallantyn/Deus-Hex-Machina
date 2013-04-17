@@ -1,4 +1,4 @@
-﻿var Game = (new function ()
+﻿var Director = (new function ()
 {
     currentScene = null;
 
@@ -13,6 +13,8 @@
 
         Update: function ()
         {
+            ScreenCanvas.Clear();
+
             !!currentScene && currentScene.Update();
 
             requestAnimationFrame(that.Update);
