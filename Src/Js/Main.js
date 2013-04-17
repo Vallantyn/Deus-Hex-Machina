@@ -1,9 +1,6 @@
 ﻿/*
 Init Loop
 */
-
-var view;
-
 window.addEventListener
 ("load"
 , function ()
@@ -15,27 +12,16 @@ window.addEventListener
             height: 720
         }
 
-    view = new MainMenuView();
+    var view = new MainMenuView();
+    Game.scene = view;
 
     ScreenCanvas.Init(screenConfig);
 
-    Start();
+    Game.Start();
 });
 /*
 End Init
 */
-
-function Start()
-{
-    view.Start();
-    Update();
-}
-
-function Update()
-{
-    view.Update();
-    requestAnimationFrame(Update);
-}
 
 /*
 Request Animation Frame
