@@ -51,12 +51,12 @@ var ScreenCanvas =
 
         if (sw / w > sh / h)
         {
-            ScreenCanvas.Canvas.style.width = "";
+            ScreenCanvas.Canvas.style.width = sh / h * w + "px";
             ScreenCanvas.Canvas.style.height = String(sh + "px");
         }
         else
         {
-            ScreenCanvas.Canvas.style.height = "";
+            ScreenCanvas.Canvas.style.height = sw / w * h + "px";
             ScreenCanvas.Canvas.style.width = String(sw + "px");
         }
 

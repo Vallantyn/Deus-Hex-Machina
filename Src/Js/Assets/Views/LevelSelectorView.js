@@ -22,9 +22,16 @@
 
     window.addEventListener("mousewheel", function (event)
     {
-        var delta = !!event.detail ? event.detail * 120 : event.wheelDelta;
+        var delta = !!event.detail ? event.detail * -120 : event.wheelDelta;
 
         offsetY += delta/3;
+    });
+
+    window.addEventListener("DOMMouseScroll", function (event)
+    {
+        var delta = !!event.detail ? event.detail * -120 : event.wheelDelta;
+
+        offsetY += delta / 3;
     });
 
     return that;

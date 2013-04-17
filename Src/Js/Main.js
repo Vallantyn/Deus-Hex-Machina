@@ -1,9 +1,7 @@
 ﻿/*
 Init Loop
 */
-window.addEventListener
-("load"
-, function ()
+function Main ()
 {
     var screenConfig =
         {
@@ -18,7 +16,7 @@ window.addEventListener
     ScreenCanvas.Init(screenConfig);
 
     Director.Start();
-});
+};
 /*
 End Init
 */

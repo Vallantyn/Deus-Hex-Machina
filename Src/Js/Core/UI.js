@@ -15,11 +15,11 @@
         var cx = ScreenCanvas.Context;
 
         for (var i in defaultStyle)
-            if (cx.hasOwnProperty(i)) cx[i] = defaultStyle[i];
+            if (!!cx[i]) cx[i] = defaultStyle[i];
 
         if (!!style)
             for (var i in style)
-                if (cx.hasOwnProperty(i)) cx[i] = style[i];
+                if (!!cx[i]) cx[i] = style[i];
     }
 
     this.Label = function (text, x, y, style)
