@@ -5,7 +5,8 @@
             fillStyle: "#CCC",
             strokeStyle: "#666",
             font: "16px Fury",
-            lineWidth: 1
+            lineWidth: 1,
+            textBaseline: "alphabetic"
         };
 
 
@@ -58,6 +59,8 @@
         }
 
         cx.stroke();
+
+        !!label && this.Label(label, x - cx.measureText(label).width / 2, y, {textBaseline: "middle"});
     }
 }());
 
