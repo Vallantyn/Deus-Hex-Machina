@@ -11,7 +11,7 @@ function RotableTile(id, s, px, py)
 
 
         cx.fillStyle = that.color;
-        cx.fill();
+        if (that.over) cx.fill();
         cx.stroke();
 
 

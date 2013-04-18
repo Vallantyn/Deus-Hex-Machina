@@ -5,7 +5,6 @@
       , height
       , halfHeight
       , x, y
-      , over = false
       , id = i
       , loopDepth
       , loopIndex
@@ -39,6 +38,7 @@
     var that =
         {
             color: "#999999",
+            over: false,
             Start: function ()
             {
 
@@ -63,8 +63,8 @@
                         that.color = "#999999";
                     }
 
-                    over = true;
-                } else over = false;
+                    that.over = true;
+                } else that.over = false;
             },
 
             Draw: function ()
@@ -82,8 +82,6 @@
                 cx.closePath();
                 cx.lineWidth = 1;
 
-                cx.lineWidth = 2;
-
                 this.Render({
                     center: { x: x, y: y },
                     context: cx,
@@ -98,7 +96,7 @@
 
                 cx.fillStyle = that.color;
 
-                if (over) cx.fill();
+                if (that.over) cx.fill();
                 cx.stroke();
 
                 var str = Math.floor(loopIndex/loopDepth);
