@@ -28,7 +28,7 @@ function RotableTile(id, s, px, py)
     that.onLeftClick = function()
     {
         
-    	that.angle += deltaAngle;
+    	that.angle += that.deltaAngle;
 
     }
 
