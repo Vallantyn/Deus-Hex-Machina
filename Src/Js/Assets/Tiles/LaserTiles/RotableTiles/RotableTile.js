@@ -1,6 +1,6 @@
 function RotableTile(id, s, px, py)
 {
-    var that = new Tile(id, s, px, py);
+    var that = new LaserTile(id, s, px, py);
 
     that.angle = Math.PI/6;
     that.deltaAngle = Math.PI/6;
@@ -40,6 +40,8 @@ function RotableTile(id, s, px, py)
     {
         
         that.angle -= that.deltaAngle;
+        if(Math.abs(that.angle - (2 * Math.PI)) < Math.PI/8) 
+            that.angle = 0;
 
     }
 

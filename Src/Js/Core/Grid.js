@@ -63,7 +63,7 @@
                     for (var j = 0; j < l; j++)
                     {
                         if(j == 2 )
-                            tiles.push(new MirrorTile(tiles.length, tSize, _x, _y));
+                            tiles.push(new FilterTile(tiles.length, tSize, _x, _y));
                         else
                             tiles.push(new Tile(tiles.length, tSize, _x, _y));
 

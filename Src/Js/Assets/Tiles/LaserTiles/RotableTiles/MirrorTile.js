@@ -9,7 +9,7 @@
     {
         var cx = tileData.context;
 
-        that.onLaser({angle : 30});
+        that.onLaser({angle : Math.PI/6});
         
 
 
@@ -39,31 +39,49 @@
 
 
 
-		 //Debug draw Tile orientation
-        cx.strokeStyle = "#FF0000";
-        cx.beginPath();
-        cx.moveTo(tileData.center.x - (tileData.outer * Math.cos(Math.PI/6)), tileData.center.y - (tileData.outer * Math.sin(Math.PI/6)));
-        cx.lineTo(tileData.center.x + (tileData.outer * Math.cos(Math.PI/6)), tileData.center.y + (tileData.outer * Math.sin(Math.PI/6)));
-        cx.closePath();
-    
-        cx.stroke();
-        //End debug draw
+		// ======== Laser Debug Draw ===========
+
+        //Draw Tile Orientation
+        that.drawLaser({
+                center  : tileData.center,
+                outer   : tileData.outer,
+                context : tileData.context,
+                color   : "#FF0000", 
+                angle   : that.angle  
+        });
+        that.drawLaser({
+                center  : tileData.center,
+                outer   : tileData.outer,
+                context : tileData.context,
+                color   : "#FF0000", 
+                angle   : that.angle + Math.PI  
+        });
 
 
-        //Debug draw Laser reflection
+         //Draw Reception
+        that.drawLaser({
+            center  : tileData.center,
+            outer   : tileData.outer,
+            context : tileData.context,
+            color   : "#00FF00", 
+            angle   : Math.PI/6 - Math.PI
+        });
+
        	if(that.reflection){
 
-
-        cx.strokeStyle = "#0000FF";
-        cx.beginPath();
-        cx.moveTo(tileData.center.x, tileData.center.y);
-        cx.lineTo(tileData.center.x + (tileData.outer * Math.cos(-that.angleLaserOutput)), tileData.center.y + (tileData.outer * Math.sin(-that.angleLaserOutput)));
-        cx.closePath();
-    
-        cx.stroke();
+            //Draw Reflection
+            that.drawLaser({
+                center  : tileData.center,
+                outer   : tileData.outer,
+                context : tileData.context,
+                color   : "#0000FF", 
+                angle   : -that.angleLaserOutput  
+            });
 
         }
-        //End debug draw
+
+
+        // =========== End Laser Debug Draw ===========
     }
 
  	that.onLaser = function (laserData)
@@ -71,8 +89,8 @@
     	//rad/pi * 180 = deg
     	//deg/180 * pi = rad
     	//var angleInRad = (that.angle / Math.PI) * 180;
-    	var angleLaser = (laserData.angle / 180) * Math.PI;
-		var angleLaserMirror = (that.angle - angleLaser);
+    	var angleLaserInput = laserData.angle;
+		var angleLaserMirror = (that.angle - angleLaserInput);
 
 		if(angleLaserMirror >= Math.PI/2 || angleLaserMirror <= -Math.PI/2)
 			that.reflection = false;
