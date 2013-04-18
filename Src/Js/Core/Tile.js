@@ -153,11 +153,10 @@
 
             onLaser: function (laserData)
             {
-<<<<<<< HEAD
+
                 lighten = true;
-=======
+
                 laser = laserData;
->>>>>>> caa9223ab4ab2f277bc23b19db4ebaa26683aab8
 
                 laser.from = id;
 
