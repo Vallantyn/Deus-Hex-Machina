@@ -3,8 +3,8 @@
     var tiles, gSize, tSize;
 
     gSize = gridSize;
-    var _t = ScreenCanvas.Canvas.height / (gridSize*2+1);
-    tSize = Math.sqrt(_t * _t - _t / 2 * _t / 2)/2;
+    var _t = ScreenCanvas.Canvas.height / (gridSize * 2 + 1);
+    tSize = Math.sqrt(_t * _t - _t / 2 * _t / 2) / 2;
 
     function getLength(size)
     {
@@ -23,7 +23,7 @@
         var h;
 
         var _x = (i - 2) * 2 * s / 2;
-        var _y = 
+        var _y =
 
         h = Math.sqrt();
 
@@ -37,7 +37,7 @@
                 var ox = ScreenCanvas.Canvas.width / 2,
                     oy = ScreenCanvas.Canvas.height / 2;
 
-                var _x = ox, _y = oy, dAngle = 5*Math.PI/6;
+                var _x = ox, _y = oy, dAngle = 5 * Math.PI / 6;
                 var h = Math.sqrt(tSize * tSize - tSize / 2 * tSize / 2);
 
                 tiles = [];
@@ -64,9 +64,9 @@
                     {
                         tiles.push(new Tile(tiles.length, tSize, _x, _y));
 
-                        if (j%i == 0) dAngle -= Math.PI/3;
+                        if (j % i == 0) dAngle -= Math.PI / 3;
 
-                        _x += 2*h*Math.cos(dAngle);
+                        _x += 2 * h * Math.cos(dAngle);
                         _y += 2 * h * Math.sin(dAngle);
                     }
 
@@ -74,14 +74,14 @@
                     _y -= h;
                 }
 
-                var L = (gSize+1) * 6;
+                var L = (gSize + 1) * 6;
 
                 for (var i = 0; i < L; i++)
                 {
                     var t = new BlockTile(tiles.length, tSize, _x, _y);
                     tiles.push(t);
 
-                    if (i % (gSize+1) == 0) dAngle -= Math.PI / 3;
+                    if (i % (gSize + 1) == 0) dAngle -= Math.PI / 3;
 
                     _x += 2 * h * Math.cos(dAngle);
                     _y += 2 * h * Math.sin(dAngle);

@@ -6,11 +6,10 @@
       , halfHeight
       , x, y
       , over = false
-      , id = i;
-
-    getDepth();
-
-    //console.log(getDepth() + "/" + Math.floor(id/getDepth()));
+      , id = i
+      , loopDepth
+      , loopIndex
+      , loopSize;
 
     size = s;
     halfSize = size / 2;
@@ -19,7 +18,7 @@
     x = px;
     y = py;
 
-    function getDepth()
+    (function getDepth()
     {
         var d = 0;
         for (var i = 0; i >= 0; i++)
@@ -27,11 +26,15 @@
             d += i * 6
             if (d >= id)
             {
-                console.log(i + "/" + Math.floor(id / d));
-                return i;
+                loopDepth = i;
+                loopIndex = (id - (d - i * 6));
+                loopSize = i*6;
+                return;
             }
         }
-    }
+    }());
+
+    //getDepth();
 
     var that =
         {
@@ -64,7 +67,7 @@
                 } else over = false;
             },
 
-            Draw: function()
+            Draw: function ()
             {
                 var cx = ScreenCanvas.Context;
 
@@ -77,6 +80,8 @@
                 }
 
                 cx.closePath();
+
+                cx.lineWidth = 2;
 
                 this.Render({
                     center: { x: x, y: y },
@@ -94,6 +99,12 @@
 
                 if (over) cx.fill();
                 cx.stroke();
+
+                var str = Math.floor(loopIndex/loopDepth);
+
+                var w = cx.measureText(str).width/2;
+
+                UI.Label(str, tileData.center.x - w, tileData.center.y, {textBaseline: "middle"});
             },
 
             onLeftClick: function ()
@@ -103,7 +114,18 @@
 
             onRightClick: function ()
             {
-
+                if (loopIndex == 1)
+                {
+                    console.log([
+                        "Top: " + (loopSize + 6) + "|" + (loopDepth + 1)
+                      , "TopLeft: " + 1 + "|" + (loopDepth + 1)
+                      , "DownLeft: " + 2 + "|" + (loopDepth + 1)
+                      , "Down: " + 2 + "|" + loopDepth
+                      , "DownRight: " + 1 + "|" + (loopDepth - 1)
+                      , "TopRight: " + loopSize + "|" + (loopDepth)
+                    ]);
+                } else
+                console.log(id+" | "+loopIndex+" | "+loopIndex%loopDepth+" | "+loopSize);
             },
 
             onLaser: function (laserData)
