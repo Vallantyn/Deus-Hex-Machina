@@ -30,6 +30,9 @@ function RotableTile(id, s, px, py)
     {
         
     	that.angle += that.deltaAngle;
+        
+        if(that.angle >= 2 * Math.PI || that.angle <= -2 * Math.PI) 
+            that.angle = 0;
 
     }
 
