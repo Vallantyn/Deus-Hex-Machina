@@ -1,6 +1,6 @@
 ﻿function MirrorTile(id, s, px, py)
 {
-    var that = new Tile(id, s, px, py);
+    var that = new RotableTile(id, s, px, py);
 
     that.angleLaserOutput = 0;
     that.reflection = false;
@@ -12,36 +12,37 @@
         var cx = tileData.context;
 
         //that.onLaser({angle : Math.PI/6});
-        
+
 
 
         if (that.over) cx.fill();
         cx.stroke();
 
-		that.itemSize= tileData.outer;
 
-		//draw mirror
-		var tempSqrt = (Math.sqrt(2)/2);
-		cx.beginPath()
-		cx.arc(tileData.center.x - that.itemSize* tempSqrt  *Math.cos(that.angle), tileData.center.y - that.itemSize*tempSqrt*Math.sin(that.angle), that.itemSize, (-45/180)*Math.PI + that.angle, (45/180)*Math.PI + that.angle, false);
-		cx.fillStyle = "rgba(50,50,50,1)";
-		cx.fill();
-		cx.beginPath()
-		cx.arc(tileData.center.x - (that.itemSize-20*that.itemSize/250)*tempSqrt*Math.cos(that.angle), tileData.center.y - (that.itemSize-20*that.itemSize/250)*tempSqrt*Math.sin(that.angle), that.itemSize - 20*that.itemSize/250 , (-45/180)*Math.PI + that.angle, (45/180)*Math.PI + that.angle, false);
-		cx.fillStyle = "rgba(150,150,150,1)";
-		cx.fill();
-		cx.beginPath()
-		cx.arc(tileData.center.x - (that.itemSize-40*that.itemSize/250)*tempSqrt*Math.cos(that.angle), tileData.center.y - (that.itemSize-40*that.itemSize/250)*tempSqrt*Math.sin(that.angle), that.itemSize - 40*that.itemSize/250 , (-45/180)*Math.PI + that.angle, (45/180)*Math.PI + that.angle, false);
-		cx.fillStyle = "rgba(200,200,200,1)";
-		cx.fill();
-		cx.beginPath()
-		cx.arc(tileData.center.x - (that.itemSize-60*that.itemSize/250)*tempSqrt*Math.cos(that.angle), tileData.center.y - (that.itemSize-60*that.itemSize/250)*tempSqrt*Math.sin(that.angle), that.itemSize - 60*that.itemSize/250 , (-45/180)*Math.PI + that.angle, (45/180)*Math.PI + that.angle, false);
-		cx.fillStyle = "rgba(255,255,255,1)";
-		cx.fill();
+        that.mirrorSize = tileData.outer;
+
+        //draw mirror
+        var tempSqrt = (Math.sqrt(2) / 2);
+        cx.beginPath()
+        cx.arc(tileData.center.x - that.mirrorSize * tempSqrt * Math.cos(that.angle), tileData.center.y - that.mirrorSize * tempSqrt * Math.sin(that.angle), that.mirrorSize, (-45 / 180) * Math.PI + that.angle, (45 / 180) * Math.PI + that.angle, false);
+        cx.fillStyle = "rgba(50,50,50,1)";
+        cx.fill();
+        cx.beginPath()
+        cx.arc(tileData.center.x - (that.mirrorSize - 20 * that.mirrorSize / 250) * tempSqrt * Math.cos(that.angle), tileData.center.y - (that.mirrorSize - 20 * that.mirrorSize / 250) * tempSqrt * Math.sin(that.angle), that.mirrorSize - 20 * that.mirrorSize / 250, (-45 / 180) * Math.PI + that.angle, (45 / 180) * Math.PI + that.angle, false);
+        cx.fillStyle = "rgba(150,150,150,1)";
+        cx.fill();
+        cx.beginPath()
+        cx.arc(tileData.center.x - (that.mirrorSize - 40 * that.mirrorSize / 250) * tempSqrt * Math.cos(that.angle), tileData.center.y - (that.mirrorSize - 40 * that.mirrorSize / 250) * tempSqrt * Math.sin(that.angle), that.mirrorSize - 40 * that.mirrorSize / 250, (-45 / 180) * Math.PI + that.angle, (45 / 180) * Math.PI + that.angle, false);
+        cx.fillStyle = "rgba(200,200,200,1)";
+        cx.fill();
+        cx.beginPath()
+        cx.arc(tileData.center.x - (that.mirrorSize - 60 * that.mirrorSize / 250) * tempSqrt * Math.cos(that.angle), tileData.center.y - (that.mirrorSize - 60 * that.mirrorSize / 250) * tempSqrt * Math.sin(that.angle), that.mirrorSize - 60 * that.mirrorSize / 250, (-45 / 180) * Math.PI + that.angle, (45 / 180) * Math.PI + that.angle, false);
+        cx.fillStyle = "rgba(255,255,255,1)";
+        cx.fill();
 
 
 
-		// ======== Laser Debug Draw ===========
+        // ======== Laser Debug Draw ===========
 
         //Draw Tile Orientation
 
@@ -70,7 +71,7 @@
         //    angle   : Math.PI/6 - Math.PI
         //});
 
-       	//if(that.reflection){
+        //if(that.reflection){
 
         //    //Draw Reflection
         //    that.drawLaser({
@@ -88,7 +89,7 @@
         // =========== End Laser Debug Draw ===========
 
 
-		that.drawLaser(that.laser);
+        that.drawLaser(that.laser);
     }
 
     that.onLeftClick = function ()
@@ -97,41 +98,41 @@
         mirrorAngle %= 6;
     }
 
- 	that.onLaser = function (laserData)
- 	{
-    	//rad/pi * 180 = deg
-    	//deg/180 * pi = rad
-    	//var angleInRad = (that.angle / Math.PI) * 180;
 
-    	//var angleLaserInput = laserData.angle;
-		//var angleLaserMirror = (that.angle - angleLaserInput);
-
-		//if(angleLaserMirror >= Math.PI/2 || angleLaserMirror <= -Math.PI/2)
-		//	that.reflection = false;
-		//else
-		//	that.reflection = true;
-
-		////console.log("Mirror Angle : " + that.angle)
-		////console.log("Entry Laser : " + angleLaser)
-		////console.log("Angle Laser / Mirror : " + angleLaserMirror)
-
-    	//that.angleLaserOutput = Math.PI - (that.angle + angleLaserMirror);
+    that.onLaser = function (laserData)
+    {
+        //rad/pi * 180 = deg
+        //deg/180 * pi = rad
+        //var angleInRad = (that.angle / Math.PI) * 180;
+        //var angleLaserInput = laserData.angle;
+        //var angleLaserMirror = (that.angle - angleLaserInput);
 
 
-    	////console.log("Output Laser (Radian) : " + that.angleLaserOutput);
-    	////console.log("Output Laser (Degree) : " + (that.angleLaserOutput/Math.PI) * 180);
+        //if(angleLaserMirror >= Math.PI/2 || angleLaserMirror <= -Math.PI/2)
+        //	that.reflection = false;
+        //else
+        //	that.reflection = true;
+
+        ////console.log("Mirror Angle : " + that.angle)
+        ////console.log("Entry Laser : " + angleLaser)
+        ////console.log("Angle Laser / Mirror : " + angleLaserMirror)
+
+        //that.angleLaserOutput = Math.PI - (that.angle + angleLaserMirror);
 
 
- 	    var laserInput = laserData;
- 	    var laserOutput = laserData;
+        ////console.log("Output Laser (Radian) : " + that.angleLaserOutput);
+        ////console.log("Output Laser (Degree) : " + (that.angleLaserOutput/Math.PI) * 180);
 
- 	    that.laser = laserInput;
+        var laserInput = laserData;
+        var laserOutput = laserData;
 
- 	    laserOutput.from = that.id;
- 	    laserOutput.to += mirrorAngle;
- 	    laserOutput.to %= 6;
+        that.laser = laserInput;
 
- 	    this.emitLaser(laserOutput);
+        laserOutput.from = that.id;
+        laserOutput.to += mirrorAngle;
+        laserOutput.to %= 6;
+
+        this.emitLaser(laserOutput);
     }
 
     //that.emitLaser = function ()
