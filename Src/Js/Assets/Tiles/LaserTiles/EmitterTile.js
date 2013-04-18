@@ -1,6 +1,7 @@
 ﻿function EmitterTile(cfg, id, s, px, py)
 {
     var that = new Tile(id, s, px, py);
+    console.log(id);
 
     var config = cfg;
 
@@ -47,11 +48,11 @@
         config.direction %= 6;
     }
 
-    //that.onRightClick = function ()
-    //{
-    //    config.direction--;
-    //    config.direction %= 6;
-    //}
+    that.onRightClick = function ()
+    {
+        config.direction--;
+        if (config.direction < 0) config.direction = 5;
+    }
 
     return that;
 }

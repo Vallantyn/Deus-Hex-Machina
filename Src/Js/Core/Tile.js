@@ -112,6 +112,12 @@
                 if (that.over || lighten) cx.fill();
                 cx.stroke();
 
+                //var str = id;//Math.floor(loopIndex/loopDepth);
+
+                //var w = cx.measureText(str).width/2;
+
+                //UI.Label(str, tileData.center.x - w, tileData.center.y, { textBaseline: "middle" });
+
                 that.drawLaser(laser);
             },
 
@@ -153,11 +159,12 @@
 
             onLaser: function (laserData)
             {
-                laser = laserData;
+                console.log("TileOnLaser");
+                //laser = laserData;
 
-                laser.from = id;
+                //laser.from = id;
 
-                this.emitLaser(laser);
+                //this.emitLaser(laser);
             },
 
             emitLaser: function ()
@@ -193,6 +200,11 @@
             set laser(value)
             {
                 laser = value;
+            },
+
+            get laser()
+            {
+                return laser;
             }
         };
 
