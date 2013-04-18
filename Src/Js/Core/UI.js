@@ -62,7 +62,7 @@
             else if (Input.left)
             {
                 fill = "#009900";
-                callback();
+                !!callback && callback();
             } else if (Input.release) fill = "#999999";
 
             cx.fillStyle = fill;

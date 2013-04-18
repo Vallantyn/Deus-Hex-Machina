@@ -8,7 +8,9 @@
       , over = false
       , id = i;
 
-    console.log(getDepth() + "/" + id);
+    getDepth();
+
+    //console.log(getDepth() + "/" + Math.floor(id/getDepth()));
 
     size = s;
     halfSize = size / 2;
@@ -22,8 +24,12 @@
         var d = 0;
         for (var i = 0; i >= 0; i++)
         {
-            d += i*6
-            if (d >= id) return i;
+            d += i * 6
+            if (d >= id)
+            {
+                console.log(i + "/" + Math.floor(id / d));
+                return i;
+            }
         }
     }
 
