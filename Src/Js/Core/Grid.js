@@ -166,7 +166,12 @@
 
                     for (var j = 0; j < l; j++)
                     {
-                        var t = new Tile(tiles.length, tSize, _x, _y)
+                        var t;
+
+                        if(j == 2 )
+                            t = new FilterTile(tiles.length, tSize, _x, _y);
+                        else
+                            t = new Tile(tiles.length, tSize, _x, _y);
 
                         t.emitLaser = emitLaser;
 

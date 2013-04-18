@@ -1,6 +1,6 @@
 function RotableTile(id, s, px, py)
 {
-    var that = new Tile(id, s, px, py);
+    var that = new LaserTile(id, s, px, py);
 
     that.angle = Math.PI/6;
     that.deltaAngle = Math.PI/6;
@@ -14,14 +14,15 @@ function RotableTile(id, s, px, py)
         if (that.over) cx.fill();
         cx.stroke();
 
-
+        //Debug draw Tile orientation
         cx.strokeStyle = "#FF0000";
         cx.beginPath();
-        cx.moveTo(tileData.center.x, tileData.center.y);
+        cx.moveTo(tileData.center.x - (tileData.outer * Math.cos(that.angle)), tileData.center.y - (tileData.outer * Math.sin(that.angle)));
         cx.lineTo(tileData.center.x + (tileData.outer * Math.cos(that.angle)), tileData.center.y + (tileData.outer * Math.sin(that.angle)));
         cx.closePath();
     
         cx.stroke();
+        //End debug draw
 
     }
 
@@ -29,6 +30,18 @@ function RotableTile(id, s, px, py)
     {
         
     	that.angle += that.deltaAngle;
+        
+        if(that.angle >= 2 * Math.PI || that.angle <= -2 * Math.PI) 
+            that.angle = 0;
+
+    }
+
+    that.onRightClick = function()
+    {
+        
+        that.angle -= that.deltaAngle;
+        if(Math.abs(that.angle - (2 * Math.PI)) < Math.PI/8) 
+            that.angle = 0;
 
     }
 
