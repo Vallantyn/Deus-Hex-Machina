@@ -7,8 +7,8 @@
 
     that.Start = function ()
     {
-        setTimeout(function () { fadeOut = true; }, 2500);
-        setTimeout(function () { Director.changeScene(new LevelSelectorView()) }, 5000);
+        setTimeout(function () { fadeOut = true; }, 1000);
+        setTimeout(function () { Director.changeScene(new LevelSelectorView()) }, 3500);
     }
 
     that.Update = function ()

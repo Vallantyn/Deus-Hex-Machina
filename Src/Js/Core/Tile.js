@@ -67,7 +67,7 @@
             Draw: function()
             {
                 var cx = ScreenCanvas.Context;
-
+                cx.strokeStyle = "#666666";
                 cx.beginPath();
                 cx.moveTo(x + size * Math.cos(0), y + size * Math.sin(0));
 
