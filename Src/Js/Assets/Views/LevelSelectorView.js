@@ -16,7 +16,8 @@
 
         for (var i = 0; i < levels; i++)
         {
-            UI.TileButton(i.toString(16).toUpperCase(), w, sx + w * 3/2 * (i % 8), offsetY + sy + h * 2 * Math.floor(i / 8) + h * (i % 2), { lineWidth: 4, textBaseline: "middle", font: "24px Fury" });
+        	var txt = i.toString(16).toUpperCase();
+            UI.TileButton(txt.length<2?0+txt:txt, w, sx + w * 3/2 * (i % 8), offsetY + sy + h * 2 * Math.floor(i / 8) + h * (i % 2), { lineWidth: 4, textBaseline: "middle", font: "24px Fury" });
         }
     }
 
