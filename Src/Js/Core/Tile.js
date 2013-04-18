@@ -77,6 +77,7 @@
                 }
 
                 cx.closePath();
+                cx.lineWidth = 1;
 
                 this.Render({
                     center: { x: x, y: y },
