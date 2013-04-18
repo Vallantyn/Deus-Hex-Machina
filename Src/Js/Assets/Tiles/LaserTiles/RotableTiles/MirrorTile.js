@@ -102,34 +102,7 @@
     	//rad/pi * 180 = deg
     	//deg/180 * pi = rad
     	//var angleInRad = (that.angle / Math.PI) * 180;
-<<<<<<< HEAD
 
-        laserData.from = id;
-
-        var from = laserData.from;
-        laserData.to = from + 1;
-        laserData.from = id;
-        that.emitLaser(laserData);
-
-        laserData.to = from - 2;
-        that.emitLaser(laserData);
-
-        /*
-        console.log("laserData from : "+laserData.from)
-    	var angleLaserInput = laserData.from * (Math.PI/3);
-		var angleLaserMirror = (that.angle - angleLaserInput);
-        console.log("laserData mirror : "+angleLaserMirror)
-		if(angleLaserMirror - Math.PI/2 > Math.PI/8)
-			that.reflection = false;
-		else
-			that.reflection = true;
-
-        console.log(that.reflection)
-
-		//console.log("Mirror Angle : " + that.angle)
-		//console.log("Entry Laser : " + angleLaser)
-		//console.log("Angle Laser / Mirror : " + angleLaserMirror)
-=======
     	//var angleLaserInput = laserData.angle;
 		//var angleLaserMirror = (that.angle - angleLaserInput);
 
@@ -143,29 +116,16 @@
 		////console.log("Angle Laser / Mirror : " + angleLaserMirror)
 
     	//that.angleLaserOutput = Math.PI - (that.angle + angleLaserMirror);
->>>>>>> 4282a2d7a52ebc8c456a567d78a759282e16bfa9
+
 
     	////console.log("Output Laser (Radian) : " + that.angleLaserOutput);
     	////console.log("Output Laser (Degree) : " + (that.angleLaserOutput/Math.PI) * 180);
 
-<<<<<<< HEAD
-        laserData.from = id;
-        var target = (that.angleLaserOutput / (Math.PI/3));
-        laserData.to = target << 0 ;
-        console.log(laserData.to)
-        console.log("angle output rad" + that.angleLaserOutput)
 
-        that.emitLaser(laserData);
-
-    	//console.log("Output Laser (Radian) : " + that.angleLaserOutput);
-    	//console.log("Output Laser (Degree) : " + (that.angleLaserOutput/Math.PI) * 180);
-*/
-=======
  	    var laserInput = laserData;
  	    var laserOutput = laserData;
 
  	    that.laser = laserInput;
->>>>>>> 4282a2d7a52ebc8c456a567d78a759282e16bfa9
 
  	    laserOutput.from = that.id;
  	    laserOutput.to += mirrorAngle;
