@@ -169,7 +169,7 @@
                         var t;
 
                         if(j == 2 )
-                            t = new FilterTile(tiles.length, tSize, _x, _y);
+                            t = new MirrorTile(tiles.length, tSize, _x, _y);
                         else
                             t = new Tile(tiles.length, tSize, _x, _y);
 

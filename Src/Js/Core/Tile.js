@@ -122,7 +122,7 @@
 
             onLaser: function (laserData)
             {
-                lighten = !lighten;
+                lighten = true;
 
                 laserData.from = id;
 

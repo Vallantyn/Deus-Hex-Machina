@@ -36,14 +36,14 @@ function RotableTile(id, s, px, py)
 
     }
 
-    that.onRightClick = function()
+   /* that.onRightClick = function()
     {
         
         that.angle -= that.deltaAngle;
         if(Math.abs(that.angle - (2 * Math.PI)) < Math.PI/8) 
             that.angle = 0;
 
-    }
+    }*/
 
     return that;
 }
