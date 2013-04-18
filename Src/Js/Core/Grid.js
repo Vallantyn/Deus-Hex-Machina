@@ -173,8 +173,8 @@
                         else*/ if (tiles.length == 42)
                         {
                             t = new EmitterTile({ color: "#FF0000", direction: 5 }, tiles.length, tSize, _x, _y);
-                        }else if{
-                            t = new MirrorTile({ color: "#FF0000", direction: 5 }, tiles.length, tSize, _x, _y);
+                        }else if(tiles.length == 35){
+                            t = new FilterTile({ color: "#FF0000", direction: 5 }, tiles.length, tSize, _x, _y);
                         }else t = new Tile(tiles.length, tSize, _x, _y);
 
 

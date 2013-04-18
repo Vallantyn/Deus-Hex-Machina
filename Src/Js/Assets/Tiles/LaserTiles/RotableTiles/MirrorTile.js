@@ -91,7 +91,16 @@
     	//var angleInRad = (that.angle / Math.PI) * 180;
 
         laserData.from = id;
-        
+
+        var from = laserData.from;
+        laserData.to = from + 1;
+        laserData.from = id;
+        that.emitLaser(laserData);
+
+        laserData.to = from - 2;
+        that.emitLaser(laserData);
+
+        /*
         console.log("laserData from : "+laserData.from)
     	var angleLaserInput = laserData.from * (Math.PI/3);
 		var angleLaserMirror = (that.angle - angleLaserInput);
@@ -110,7 +119,7 @@
     	that.angleLaserOutput = Math.PI - (that.angle + angleLaserMirror);
 
         laserData.from = id;
-        var target = (that.angleLaserOutput / (Math.PI/3))
+        var target = (that.angleLaserOutput / (Math.PI/3));
         laserData.to = target << 0 ;
         console.log(laserData.to)
         console.log("angle output rad" + that.angleLaserOutput)
@@ -119,7 +128,7 @@
 
     	//console.log("Output Laser (Radian) : " + that.angleLaserOutput);
     	//console.log("Output Laser (Degree) : " + (that.angleLaserOutput/Math.PI) * 180);
-
+*/
 
 
     	
