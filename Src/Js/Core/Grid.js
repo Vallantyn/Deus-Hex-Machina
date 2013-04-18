@@ -42,7 +42,7 @@
 
                 tiles = [];
 
-                var t = new Tile(tiles.length, tSize, _x, _y);
+                var t = new MirrorTile(tiles.length, tSize, _x, _y);
 
                 t.onRightClick = function ()
                 {
@@ -62,7 +62,7 @@
 
                     for (var j = 0; j < l; j++)
                     {
-                        tiles.push(new RotableTile(tiles.length, tSize, _x, _y));
+                        tiles.push(new Tile(tiles.length, tSize, _x, _y));
 
                         if (j%i == 0) dAngle -= Math.PI/3;
 
