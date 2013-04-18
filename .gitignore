@@ -6,6 +6,8 @@
 *.user
 *.sln.docstates
 
+Scripts/_reference.js
+
 *.csproj
 *.sln
 
