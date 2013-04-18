@@ -1,9 +1,11 @@
 ﻿function MirrorTile(id, s, px, py)
 {
-    var that = new RotableTile(id, s, px, py);
+    var that = new Tile(id, s, px, py);
 
     that.angleLaserOutput = 0;
     that.reflection = false;
+
+    var mirrorAngle = 3;
 
     that.Render = function (tileData)
     {
@@ -42,53 +44,65 @@
 		// ======== Laser Debug Draw ===========
 
         //Draw Tile Orientation
-        /*that.drawLaser({
-                center  : tileData.center,
-                outer   : tileData.outer,
-                context : tileData.context,
-                color   : "#FF0000", 
-                angle   : that.angle  
-        });
-        that.drawLaser({
-                center  : tileData.center,
-                outer   : tileData.outer,
-                context : tileData.context,
-                color   : "#FF0000", 
-                angle   : that.angle + Math.PI  
-        });*/
+
+        //that.drawLaser({
+        //        center  : tileData.center,
+        //        outer   : tileData.outer,
+        //        context : tileData.context,
+        //        color   : "#FF0000", 
+        //        angle   : that.angle  
+        //});
+        //that.drawLaser({
+        //        center  : tileData.center,
+        //        outer   : tileData.outer,
+        //        context : tileData.context,
+        //        color   : "#FF0000", 
+        //        angle   : that.angle + Math.PI  
+        //});
 
 
-         //Draw Reception
-        that.drawLaser({
-            center  : tileData.center,
-            outer   : tileData.outer,
-            context : tileData.context,
-            color   : "#00FF00", 
-            angle   : Math.PI/6 - Math.PI
-        });
+        // //Draw Reception
+        //that.drawLaser({
+        //    center  : tileData.center,
+        //    outer   : tileData.outer,
+        //    context : tileData.context,
+        //    color   : "#00FF00", 
+        //    angle   : Math.PI/6 - Math.PI
+        //});
 
-       	if(that.reflection){
+       	//if(that.reflection){
 
-            //Draw Reflection
-            that.drawLaser({
-                center  : tileData.center,
-                outer   : tileData.outer,
-                context : tileData.context,
-                color   : "#0000FF", 
-                angle   : that.angleLaserOutput + Math.PI/2 
-            });
+        //    //Draw Reflection
+        //    that.drawLaser({
+        //        center  : tileData.center,
+        //        outer   : tileData.outer,
+        //        context : tileData.context,
+        //        color   : "#0000FF", 
+        //        angle   : -that.angleLaserOutput  
+        //    });
 
-        }
+        //}
+
 
 
         // =========== End Laser Debug Draw ===========
+
+
+		that.drawLaser(that.laser);
+    }
+
+    that.onLeftClick = function ()
+    {
+        mirrorAngle++;
+        mirrorAngle %= 6;
     }
 
  	that.onLaser = function (laserData)
-    {
+ 	{
     	//rad/pi * 180 = deg
     	//deg/180 * pi = rad
     	//var angleInRad = (that.angle / Math.PI) * 180;
+<<<<<<< HEAD
 
         laserData.from = id;
 
@@ -115,9 +129,26 @@
 		//console.log("Mirror Angle : " + that.angle)
 		//console.log("Entry Laser : " + angleLaser)
 		//console.log("Angle Laser / Mirror : " + angleLaserMirror)
+=======
+    	//var angleLaserInput = laserData.angle;
+		//var angleLaserMirror = (that.angle - angleLaserInput);
 
-    	that.angleLaserOutput = Math.PI - (that.angle + angleLaserMirror);
+		//if(angleLaserMirror >= Math.PI/2 || angleLaserMirror <= -Math.PI/2)
+		//	that.reflection = false;
+		//else
+		//	that.reflection = true;
 
+		////console.log("Mirror Angle : " + that.angle)
+		////console.log("Entry Laser : " + angleLaser)
+		////console.log("Angle Laser / Mirror : " + angleLaserMirror)
+
+    	//that.angleLaserOutput = Math.PI - (that.angle + angleLaserMirror);
+>>>>>>> 4282a2d7a52ebc8c456a567d78a759282e16bfa9
+
+    	////console.log("Output Laser (Radian) : " + that.angleLaserOutput);
+    	////console.log("Output Laser (Degree) : " + (that.angleLaserOutput/Math.PI) * 180);
+
+<<<<<<< HEAD
         laserData.from = id;
         var target = (that.angleLaserOutput / (Math.PI/3));
         laserData.to = target << 0 ;
@@ -129,15 +160,24 @@
     	//console.log("Output Laser (Radian) : " + that.angleLaserOutput);
     	//console.log("Output Laser (Degree) : " + (that.angleLaserOutput/Math.PI) * 180);
 */
+=======
+ 	    var laserInput = laserData;
+ 	    var laserOutput = laserData;
 
+ 	    that.laser = laserInput;
+>>>>>>> 4282a2d7a52ebc8c456a567d78a759282e16bfa9
 
-    	
+ 	    laserOutput.from = that.id;
+ 	    laserOutput.to += mirrorAngle;
+ 	    laserOutput.to %= 6;
+
+ 	    this.emitLaser(laserOutput);
     }
 
-    that.emitLaser = function ()
-    {
+    //that.emitLaser = function ()
+    //{
 
-    }
+    //}
 
 
 

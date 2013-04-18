@@ -42,91 +42,90 @@
     {
         var id = laserData.from;
         var target = laserData.to;
-        var T;
+        var T = null;
 
         if (id == 0)
         {
             T = target + 1;
-            return tiles[T].onLaser(laserData);
+            //return tiles[T].onLaser(laserData);
         }
-
-        var t = tiles[id];
-
-        var isCorner = t.loop == 1 ? true : t.index % t.loop == 1;
-        var orientation = isCorner ? (t.loop == 1 ? t.index - 1 : Math.floor(t.index / t.loop))
-            : (t.index % t.loop == 0 ? Math.floor(t.index / t.loop) % 6 : (Math.floor(t.index / t.loop) + 1) % 6);
-
-        var corner = [1, 1, 0, -1, 0, 1];
-        var intern = [1, 0, -1, -1, 0, 1];
-
-        var pos = [];
-
-        for (var i = 0; i < 6; i++)
+        else
         {
-            if (isCorner) pos.push(t.loop + corner[Math.abs(orientation - i) % 6]);
-            else
-            {
-                var o = orientation - i;
-                if (o > 0) o -= 6;
 
-                pos.push(t.loop + intern[Math.abs(o) % 6]);
+            var t = tiles[id];
+
+            var isCorner = t.loop == 1 ? true : t.index % t.loop == 1;
+            var orientation = isCorner ? (t.loop == 1 ? t.index - 1 : Math.floor(t.index / t.loop))
+                : (t.index % t.loop == 0 ? Math.floor(t.index / t.loop) % 6 : (Math.floor(t.index / t.loop) + 1) % 6);
+
+            var corner = [1, 1, 0, -1, 0, 1];
+            var intern = [1, 0, -1, -1, 0, 1];
+
+            var pos = [];
+
+            for (var i = 0; i < 6; i++)
+            {
+                if (isCorner) pos.push(t.loop + corner[Math.abs(orientation - i) % 6]);
+                else
+                {
+                    var o = orientation - i;
+                    if (o > 0) o -= 6;
+
+                    pos.push(t.loop + intern[Math.abs(o) % 6]);
+                }
             }
-        }
 
-        if (!!pos)
-        {
-            switch (pos[target])
+            if (!!pos)
             {
-                case t.loop:
-                    if (isCorner)
-                    {
-                        T = target == ((orientation + 2) % 6) ? id + 1 : id - 1;
-                        if (T > t.loopMax) T -= t.loopLength;
-                        else if (orientation == 0 && T < id) T += t.loopLength;
-                    }
-                    else
-                    {
-                        T = (target == ((orientation + 1) % 6)) ? id + 1 : id - 1;
-                        if (T > t.loopMax) T -= t.loopLength;
-                    }
-                    break;
-
-                case t.loop + 1:
-                    if (isCorner || orientation != 0)
-                    {
-                        T = (target == orientation) ? id + orientation + t.loop * 6 :
-                            (target == ((orientation + 1) % 6) ? id + orientation + t.loop * 6 + 1 :
-                            id + orientation + t.loop * 6 - 1);
-
-                        if (T == t.loopMax) T += (t.loop + 1) * 6;
-                    } else
-                    {
-                        T = (target == orientation) ? id + (t.loop + 1) * 6 : id + (t.loop + 1) * 6 - 1;
-                    }
-                    break;
-
-                case t.loop - 1:
-                    if (isCorner)
-                    {
-                        T = t.loop == 1 ? 0 : id - orientation - (t.loop - 1) * 6;
-                    }
-                    else
-                    {
-                        if (orientation != 0)
-                            T = (target == ((orientation + 3) % 6)) ? id - orientation - (t.loop - 1) * 6 : id - orientation - (t.loop - 1) * 6 + 1;
-                        else
-                            T = (target == ((orientation + 3) % 6)) ? id - 1 - t.loop * 6 + 1 : id - 1 - t.loop * 6 + 2;
-
-                        if (T > (t.loopMax - t.loopLength))
+                switch (pos[target])
+                {
+                    case t.loop:
+                        if (isCorner)
                         {
-                            T -= (t.loop - 1) * 6;
+                            T = target == ((orientation + 2) % 6) ? id + 1 : id - 1;
+                            if (T > t.loopMax) T -= t.loopLength;
+                            else if (orientation == 0 && T < id) T += t.loopLength;
                         }
-                    }
-                    break;
+                        else
+                        {
+                            T = (target == ((orientation + 1) % 6)) ? id + 1 : id - 1;
+                            if (T > t.loopMax) T -= t.loopLength;
+                        }
+                        break;
 
-                default:
-                    T = 0;
-                    break;
+                    case t.loop +1:
+                        if (isCorner || orientation != 0)
+                        {
+                            T = (target == orientation) ? id + orientation + t.loop * 6 :
+                                (target == ((orientation + 1) % 6) ? id + orientation + t.loop * 6 + 1 :
+                                id + orientation + t.loop * 6 - 1);
+
+                            if (T == t.loopMax) T += (t.loop + 1) * 6;
+                        } else
+                        {
+                            T = (target == orientation) ? id + (t.loop + 1) * 6 : id + (t.loop + 1) * 6 - 1;
+                        }
+                        break;
+
+                    case t.loop -1:
+                        if (isCorner)
+                        {
+                            T = t.loop == 1 ? 0 : id - orientation - (t.loop - 1) * 6;
+                        }
+                        else
+                        {
+                            if (orientation != 0)
+                                T = (target == ((orientation + 3) % 6)) ? id - orientation - (t.loop - 1) * 6 : id - orientation - (t.loop - 1) * 6 + 1;
+                            else
+                                T = (target == ((orientation + 3) % 6)) ? id - 1 - t.loop * 6 + 1 : id - 1 - t.loop * 6 + 2;
+
+                            if (T > (t.loopMax - t.loopLength))
+                            {
+                                T -= (t.loop - 1) * 6;
+                            }
+                        }
+                        break;
+                }
             }
         }
 
@@ -145,17 +144,8 @@
 
                 tiles = [];
 
-                var t = new Tile(tiles.length, tSize, _x, _y);
+                var t = new LaserTile(tiles.length, tSize, _x, _y);
                 t.emitLaser = emitLaser;
-                //t.onRightClick = function ()
-                //{
-                //    console.log("I Have A RIGHT");
-                //}
-
-                //t.onLeftClick = function ()
-                //{
-                //    console.log("LEFT 4 Dead");
-                //}
 
                 tiles.push(t);
 
@@ -167,15 +157,13 @@
                     {
                         var t;
 
-
-                        /*if (j == 2)
-                            t = new FilterTile(tiles.length, tSize, _x, _y);
-                        else*/ if (tiles.length == 42)
+                        if (j == 2)
+                            t = new MirrorTile(tiles.length, tSize, _x, _y);
+                        else if (tiles.length == 42)
                         {
                             t = new EmitterTile({ color: "#FF0000", direction: 5 }, tiles.length, tSize, _x, _y);
-                        }else if(tiles.length == 35){
-                            t = new FilterTile({ color: "#FF0000", direction: 5 }, tiles.length, tSize, _x, _y);
-                        }else t = new Tile(tiles.length, tSize, _x, _y);
+                        }
+                        else t = new LaserTile(tiles.length, tSize, _x, _y);
 
 
                         t.emitLaser = emitLaser;

@@ -2,19 +2,32 @@ function LaserTile(id, s, px, py)
 {
     var that = new Tile(id, s, px, py);
 
-    that.drawLaser = function(laserData)
-    {
-        var cx = laserData.context;
-        cx.strokeStyle = laserData.color;
-        cx.beginPath();
-        cx.moveTo(laserData.center.x , laserData.center.y );
-        cx.lineTo(laserData.center.x + (laserData.outer * Math.cos(laserData.angle)), laserData.center.y + (laserData.outer * Math.sin(laserData.angle)));
-        cx.closePath();
+    //that.drawLaser = function(laserData)
+    //{
+    //    var cx = laserData.context;
+    //    cx.strokeStyle = laserData.color;
+    //    cx.beginPath();
+    //    cx.moveTo(laserData.center.x , laserData.center.y );
+    //    cx.lineTo(laserData.center.x + (laserData.outer * Math.cos(laserData.angle)), laserData.center.y + (laserData.outer * Math.sin(laserData.angle)));
+    //    cx.closePath();
     
-        cx.stroke();
+    //    cx.stroke();
+    //}
+
+    that.onLaser = function (laserData)
+    {
+
+        //console.log(that.id);
+
+        //console.log(that.id);
+        var laser = laserData;
+
+        laser.from = id;
+
+        that.laser = laser;
+
+        this.emitLaser(laser);
     }
-
-
 
     return that;
 }
