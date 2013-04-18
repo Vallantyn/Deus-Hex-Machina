@@ -4,6 +4,13 @@
     y: null,
     right: false,
     left: false,
+    release: true,
+
+    Update: function()
+    {
+        if (Input.right) Input.right = false;
+        if (Input.left) Input.left = false;
+    },
 
     onMouseMove: function (event)
     {
@@ -22,6 +29,8 @@
         /// <param name="event" type="MouseEvent">Mouse Move Event</param>
         
         event.preventDefault();
+
+        Input.release = false;
 
         switch (event.button)
         {
@@ -42,6 +51,8 @@
         /// <param name="event" type="MouseEvent">Mouse Move Event</param>
 
         event.preventDefault();
+
+        Input.release = true;
 
         switch (event.button)
         {

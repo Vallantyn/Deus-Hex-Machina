@@ -32,7 +32,9 @@
         cx.fillText(text, x, y);
     }
 
-    this.TileButton = function (label, size, x, y, style)
+    var fill;
+
+    this.TileButton = function (label, size, x, y, callback, style)
     {
         var cx = ScreenCanvas.Context;
 
@@ -53,9 +55,17 @@
 
         if (Picking.PointCircle(Input.x, Input.y, x, y, h))
         {
-            if (Input.right) cx.fillStyle = "#990000";
-            else if (Input.left) cx.fillStyle = "#009900";
-            else cx.fillStyle = "#999999";
+            if (Input.right)
+            {
+                fill = "#990000";
+            }
+            else if (Input.left)
+            {
+                fill = "#009900";
+                callback();
+            } else if (Input.release) fill = "#999999";
+
+            cx.fillStyle = fill;
 
             cx.fill();
         }

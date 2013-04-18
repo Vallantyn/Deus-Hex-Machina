@@ -1,6 +1,7 @@
 ﻿var Director = (new function ()
 {
-    currentScene = null;
+    var currentScene = null;
+    var tick = null;
 
     var that =
     {
@@ -17,7 +18,16 @@
 
             !!currentScene && currentScene.Update();
 
-            requestAnimationFrame(that.Update);
+            Input.Update();
+
+            tick = requestAnimationFrame(that.Update);
+        },
+
+        changeScene: function(scn)
+        {
+            currentScene = scn;
+            cancelAnimationFrame(tick);
+            that.Start();
         },
 
         get scene()

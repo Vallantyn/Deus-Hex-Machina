@@ -12,11 +12,15 @@
     that.Update = function ()
     {
         UI.Label("Choose a Level", w, w, { strokeStyle: "#CCC", fillStyle: "#CCC", font: "24pt Fury" });
-        UI.TileButton("Dev", w, sx - 4 * w, sy - 2 * w, { lineWidth: 4, textBaseline: "middle" });
+        UI.TileButton("Dev", w, sx - 4 * w, sy - 2 * w, function ()
+        {
+            Director.changeScene(new GameView());
+        }
+        , { lineWidth: 4, textBaseline: "middle" });
 
         for (var i = 0; i < levels; i++)
         {
-            UI.TileButton(i.toString(16).toUpperCase(), w, sx + w * 3/2 * (i % 8), offsetY + sy + h * 2 * Math.floor(i / 8) + h * (i % 2), { lineWidth: 4, textBaseline: "middle", font: "24px Fury" });
+            UI.TileButton(i.toString(16).toUpperCase(), w, sx + w * 3/2 * (i % 8), offsetY + sy + h * 2 * Math.floor(i / 8) + h * (i % 2), function() { return }, { lineWidth: 4, textBaseline: "middle", font: "16pt Fury" });
         }
     }
 
