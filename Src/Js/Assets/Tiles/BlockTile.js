@@ -12,5 +12,10 @@
         cx.stroke();
     }
 
+    that.onLaser = function ()
+    {
+        return;
+    }
+
     return that;
 }
