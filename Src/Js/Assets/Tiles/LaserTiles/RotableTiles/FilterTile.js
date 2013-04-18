@@ -92,8 +92,8 @@ function FilterTile(id, s, px, py)
     {
     	var colorOutput = ""
 
-        console.log("tile angle " + that.angle/Math.PI * 180)
-        console.log("laser angle " + laserData.angle/Math.PI * 180)
+        //console.log("tile angle " + that.angle/Math.PI * 180)
+        //console.log("laser angle " + laserData.angle/Math.PI * 180)
         if(Math.abs(that.angle - laserData.angle) < Math.PI/8 )
             that.emission = true;  
         else

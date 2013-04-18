@@ -47,8 +47,7 @@
         if (id == 0)
         {
             T = target + 1;
-            tiles[T].onLaser(laserData);
-            return;
+            return tiles[T].onLaser(laserData);
         }
 
         var t = tiles[id];
@@ -168,10 +167,13 @@
                     {
                         var t;
 
-                        if(j == 2 )
+                        /*if (j == 2)
                             t = new FilterTile(tiles.length, tSize, _x, _y);
-                        else
-                            t = new Tile(tiles.length, tSize, _x, _y);
+                        else*/ if (tiles.length == 42)
+                        {
+                            t = new EmitterTile({ color: "#FF0000", direction: 5 }, tiles.length, tSize, _x, _y);
+                        }
+                        else t = new Tile(tiles.length, tSize, _x, _y);
 
                         t.emitLaser = emitLaser;
 

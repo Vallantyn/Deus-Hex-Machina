@@ -10,7 +10,8 @@
       , loopIndex
       , loopSize
       , loopMax
-      , lighten = false;
+      , lighten = false
+      , laser;
 
     size = s;
     halfSize = size / 2;
@@ -30,7 +31,7 @@
                 loopMax = d;
                 loopDepth = i;
                 loopIndex = (id - (d - i * 6));
-                loopSize = i*6;
+                loopSize = i * 6;
                 return;
             }
         }
@@ -49,6 +50,8 @@
 
             Update: function ()
             {
+                this.SelfUpdate();
+
                 if (Picking.PointCircle(Input.x, Input.y, x, y, height))
                 {
                     if (Input.right)
@@ -70,6 +73,11 @@
                 } else that.over = false;
 
                 if (lighten) that.color = "#009999";
+            },
+
+            SelfUpdate: function()
+            {
+
             },
 
             Draw: function ()
@@ -103,6 +111,34 @@
 
                 if (that.over || lighten) cx.fill();
                 cx.stroke();
+
+                that.drawLaser(laser);
+            },
+
+            drawLaser: function (laserData)
+            {
+                if (!laserData) return;
+
+                var cx = ScreenCanvas.Context;
+
+                for (var i = 1; i < 4; i++)
+                {
+
+                    cx.lineWidth = i * 4;
+                    cx.globalAlpha = 1 / (i * 2);
+                    cx.strokeStyle = laserData.color;
+
+                    var a = (3-laserData.to) * Math.PI / 3 + Math.PI/6;
+
+                    cx.beginPath();
+                    cx.moveTo(x + height * Math.cos(a), y + height * Math.sin(a));
+                    cx.lineTo(x + height * Math.cos(a - Math.PI), y + height * Math.sin(a - Math.PI));
+                    cx.stroke();
+
+                    cx.globalAlpha = 1;
+                }
+
+                laser = null;
             },
 
             onLeftClick: function ()
@@ -112,21 +148,16 @@
 
             onRightClick: function ()
             {
-                for (var i = 0; i < 6; i++)
-                {
-                    this.emitLaser({
-                        from: id, to: i
-                    });
-                }
+                
             },
 
             onLaser: function (laserData)
             {
-                lighten = !lighten;
+                laser = laserData;
 
-                laserData.from = id;
+                laser.from = id;
 
-                this.emitLaser(laserData);
+                this.emitLaser(laser);
             },
 
             emitLaser: function ()
@@ -157,6 +188,11 @@
             get loopMax()
             {
                 return loopMax;
+            },
+
+            set laser(value)
+            {
+                laser = value;
             }
         };
 
