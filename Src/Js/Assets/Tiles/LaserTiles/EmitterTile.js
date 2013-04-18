@@ -22,6 +22,34 @@
         };
 
         cx.fill();
+
+        that.drawLaser(that.laser, tileData);
+    }
+
+    that.drawLaser = function (laserData, tileData)
+    {
+        //if (!laserData) return;
+
+        var cx = ScreenCanvas.Context;
+
+        for (var i = 1; i < 4; i++)
+        {
+
+            cx.lineWidth = i * 4;
+            cx.globalAlpha = 1 / (i * 2);
+            cx.strokeStyle = laserData.color;
+
+            var a = (3 - laserData.to) * Math.PI / 3 + Math.PI / 6;
+
+            cx.beginPath();
+            cx.moveTo(tileData.x, tileData.y);
+            cx.lineTo(tileData.x + tileData.inner * Math.cos(a - Math.PI), tileData.y + tileData.inner * Math.sin(a - Math.PI));
+            cx.stroke();
+
+            cx.globalAlpha = 1;
+        }
+
+        laser = null;
     }
 
     that.SelfUpdate = function ()
