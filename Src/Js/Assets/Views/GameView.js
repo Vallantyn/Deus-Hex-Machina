@@ -6,7 +6,7 @@
 
     that.Start = function ()
     {
-        grid = new Grid(16);
+        grid = new Grid(4);
         grid.Start();
     }
 
