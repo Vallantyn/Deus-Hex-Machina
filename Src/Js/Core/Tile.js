@@ -8,7 +8,9 @@
       , id = i
       , loopDepth
       , loopIndex
-      , loopSize;
+      , loopSize
+      , loopMax
+      , lighten = false;
 
     size = s;
     halfSize = size / 2;
@@ -25,6 +27,7 @@
             d += i * 6
             if (d >= id)
             {
+                loopMax = d;
                 loopDepth = i;
                 loopIndex = (id - (d - i * 6));
                 loopSize = i*6;
@@ -65,6 +68,8 @@
 
                     that.over = true;
                 } else that.over = false;
+
+                if (lighten) that.color = "#009999";
             },
 
             Draw: function ()
@@ -96,14 +101,8 @@
 
                 cx.fillStyle = that.color;
 
-                if (that.over) cx.fill();
+                if (that.over || lighten) cx.fill();
                 cx.stroke();
-
-                var str = Math.floor(loopIndex/loopDepth);
-
-                var w = cx.measureText(str).width/2;
-
-                UI.Label(str, tileData.center.x - w, tileData.center.y, {textBaseline: "middle"});
             },
 
             onLeftClick: function ()
@@ -113,28 +112,51 @@
 
             onRightClick: function ()
             {
-                if (loopIndex == 1)
+                for (var i = 0; i < 6; i++)
                 {
-                    console.log([
-                        "Top: " + (loopSize + 6) + "|" + (loopDepth + 1)
-                      , "TopLeft: " + 1 + "|" + (loopDepth + 1)
-                      , "DownLeft: " + 2 + "|" + (loopDepth + 1)
-                      , "Down: " + 2 + "|" + loopDepth
-                      , "DownRight: " + 1 + "|" + (loopDepth - 1)
-                      , "TopRight: " + loopSize + "|" + (loopDepth)
-                    ]);
-                } else
-                console.log(id+" | "+loopIndex+" | "+loopIndex%loopDepth+" | "+loopSize);
+                    this.emitLaser({
+                        from: id, to: i
+                    });
+                }
             },
 
             onLaser: function (laserData)
             {
+                lighten = !lighten;
 
+                laserData.from = id;
+
+                this.emitLaser(laserData);
             },
 
             emitLaser: function ()
             {
 
+            },
+
+            get loop()
+            {
+                return loopDepth;
+            },
+
+            get index()
+            {
+                return loopIndex;
+            },
+
+            get loopLength()
+            {
+                return loopSize;
+            },
+
+            get id()
+            {
+                return id;
+            },
+
+            get loopMax()
+            {
+                return loopMax;
             }
         };
 
