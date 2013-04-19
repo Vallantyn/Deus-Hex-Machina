@@ -38,7 +38,7 @@
                             Input.mode = "ADDITION";
                             Input.additionCallback = window[o + "Tile"];
                             if (o = "Filter") Input.callbackArgs = {color:items[o].color}
-                        }, { lineWidth: 4, textBaseline: "middle", font: "12pt Fury" });
+                        }, { lineWidth: 4, textBaseline: "middle", font: "12pt Fury", fillStyle: !!items[o].color ? items[o].color: "#CCC"});
                         i++
                     }
                 }
