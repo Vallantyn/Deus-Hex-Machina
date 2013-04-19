@@ -9,6 +9,7 @@
 
     var laserInput;
     var laserOutput;
+    var laserFrom;
 
     that.Render = function (tileData)
     {
@@ -70,7 +71,7 @@
         laserOutput.to = laserData.to;
         laserOutput.color = laserData.color;
 
-        var laserFrom = (laserInput.to + 3) % 6;
+        laserFrom = (laserInput.to + 3) % 6;
 
         //that.laser = laserInput;
 
@@ -123,8 +124,10 @@
             cx.globalAlpha = 1 / (i * 2);
             cx.strokeStyle = laserData.color;
 
+            //console.log(laserOutput.to + "|"+laserFrom);
+
             var a = (3 - laserInput.to) * (Math.PI / 3) - 5 * Math.PI / 6;
-            var b = (3 - (laserOutput.to == 5 ? -1 : laserOutput.to - 3)) * (Math.PI / 3) - 5 * Math.PI / 6;
+            var b = (3 - (laserOutput.to == ((laserFrom+3)%6) ? laserFrom-3 : laserOutput.to - 3)) * (Math.PI / 3) - 5 * Math.PI / 6;
 
             cx.beginPath();
             cx.moveTo(tileData.center.x + tileData.inner * Math.cos(a), tileData.center.y + tileData.inner * Math.sin(a));

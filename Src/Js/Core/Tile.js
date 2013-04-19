@@ -125,11 +125,11 @@
                 if (that.over || lighten) cx.fill();
                 cx.stroke();
 
-                //var str = id;//Math.floor(loopIndex/loopDepth);
+                var str = id;//Math.floor(loopIndex/loopDepth);
 
-                //var w = cx.measureText(str).width/2;
+                var w = cx.measureText(str).width/2;
 
-                //UI.Label(str, tileData.center.x - w, tileData.center.y, { textBaseline: "middle" });
+                UI.Label(str, tileData.center.x - w, tileData.center.y, { textBaseline: "middle" });
 
                 that.drawLaser(laser);
             },
@@ -172,11 +172,8 @@
 
             onLaser: function (laserData)
             {
-
-
                 console.log("TileOnLaser");
                 //laser = laserData;
-
 
                 //laser.from = id;
 

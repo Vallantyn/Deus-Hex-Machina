@@ -3,6 +3,7 @@ function LaserTile(id, s, px, py)
     var that = new Tile(id, s, px, py);
 
     var selflaser = null;
+    var lasers = [];
 
     that.Render = function (tileData)
     {
@@ -17,14 +18,18 @@ function LaserTile(id, s, px, py)
 
         //var w = cx.measureText(str).width/2;
 
-        //UI.Label(str, tileData.center.x - w, tileData.center.y, { textBaseline: "middle" });
+        //UI.Label(str, tileData.center.x - w, tileData.center.y, { textBaseline: "middle", font: "8pt Arial" });
 
-        that.drawLaser(selflaser, tileData);
+        for (var i = 0; i < lasers.length; i++) {
+            that.drawLaser(lasers[i], tileData);
+        }
+
+        lasers = [];
     },
 
     that.drawLaser = function (laserData, tileData)
     {
-        if (!selflaser) return;
+        if (!laserData) return;
 
         var cx = tileData.context;
 
@@ -33,9 +38,9 @@ function LaserTile(id, s, px, py)
 
             cx.lineWidth = i * 4;
             cx.globalAlpha = 1 / (i * 2);
-            cx.strokeStyle = selflaser.color;
+            cx.strokeStyle = laserData.color;
 
-            var a = (3 - selflaser.to) * Math.PI / 3 + Math.PI / 6;
+            var a = (3 - laserData.to) * Math.PI / 3 + Math.PI / 6;
 
             cx.beginPath();
             cx.moveTo(tileData.center.x + tileData.inner * Math.cos(a), tileData.center.y + tileData.inner * Math.sin(a));
@@ -45,7 +50,7 @@ function LaserTile(id, s, px, py)
             cx.globalAlpha = 1;
         }
 
-        selflaser = null;
+        //selflaser = null;
     }
 
     that.onLaser = function (laserData)
@@ -56,9 +61,9 @@ function LaserTile(id, s, px, py)
             color: laserData.color
         };
 
-        selflaser = laser;
+        lasers.push(laser);
 
-        this.emitLaser(selflaser);
+        this.emitLaser(laser);
     }
 
     return that;
