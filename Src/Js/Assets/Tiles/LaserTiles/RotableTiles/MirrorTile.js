@@ -1,6 +1,5 @@
 ﻿function MirrorTile(id, s, px, py)
 {
-    console.log("new mirror tile");
     var that = new RotableTile(id, s, px, py);
 
     that.angleLaserOutput = 0;
@@ -22,7 +21,7 @@
         that.mirrorSize = tileData.outer;
 
         //draw mirror
-        that.angle = (12-mirrorAngle)*Math.PI/6;
+        that.angle = (12 - mirrorAngle) * Math.PI / 6;
         var tempSqrt = (Math.sqrt(2) / 2);
         cx.beginPath()
         cx.arc(tileData.center.x - that.mirrorSize * tempSqrt * Math.cos(that.angle), tileData.center.y - that.mirrorSize * tempSqrt * Math.sin(that.angle), that.mirrorSize, (-45 / 180) * Math.PI + that.angle, (45 / 180) * Math.PI + that.angle, false);
@@ -41,55 +40,6 @@
         cx.fillStyle = "rgba(255,255,255,1)";
         cx.fill();
 
-
-
-        // ======== Laser Debug Draw ===========
-
-        //Draw Tile Orientation
-
-        //that.drawLaser({
-        //        center  : tileData.center,
-        //        outer   : tileData.outer,
-        //        context : tileData.context,
-        //        color   : "#FF0000", 
-        //        angle   : that.angle  
-        //});
-        //that.drawLaser({
-        //        center  : tileData.center,
-        //        outer   : tileData.outer,
-        //        context : tileData.context,
-        //        color   : "#FF0000", 
-        //        angle   : that.angle + Math.PI  
-        //});
-
-
-        // //Draw Reception
-        //that.drawLaser({
-        //    center  : tileData.center,
-        //    outer   : tileData.outer,
-        //    context : tileData.context,
-        //    color   : "#00FF00", 
-        //    angle   : Math.PI/6 - Math.PI
-        //});
-
-        //if(that.reflection){
-
-        //    //Draw Reflection
-        //    that.drawLaser({
-        //        center  : tileData.center,
-        //        outer   : tileData.outer,
-        //        context : tileData.context,
-        //        color   : "#0000FF", 
-        //        angle   : -that.angleLaserOutput  
-        //    });
-
-        //}
-
-
-
-        // =========== End Laser Debug Draw ===========
-
-
         that.drawLaser(laserInput, tileData);
     }
 
@@ -103,45 +53,54 @@
     that.onRightClick = function ()
     {
         mirrorAngle--;
-        if (mirrorAngle==-1)
-            mirrorAngle=11;
+        if (mirrorAngle == -1)
+            mirrorAngle = 11;
     }
 
     that.onLaser = function (laserData)
     {
-        var laserInput = laserData;
-        var laserOutput = laserData;
-        var laserFrom = (laserInput.to+3)%6;
+        laserInput = {};
+        laserOutput = {};
 
-        that.laser = laserInput;
+        laserInput.from = that.id;
+        laserInput.to = laserData.to;
+        laserInput.color = laserData.color;
 
         laserOutput.from = that.id;
-        if (mirrorAngle%2 == 0)
+        laserOutput.to = laserData.to;
+        laserOutput.color = laserData.color;
+
+        var laserFrom = (laserInput.to + 3) % 6;
+
+        //that.laser = laserInput;
+
+        laserOutput.from = that.id;
+        if (mirrorAngle % 2 == 0)
         {
-            if (mirrorAngle/2 == laserFrom || (mirrorAngle/2+1)%6 == laserFrom)
+            if (mirrorAngle / 2 == laserFrom || (mirrorAngle / 2 + 1) % 6 == laserFrom)
             {
-                if(mirrorAngle/2 == laserFrom)
+                if (mirrorAngle / 2 == laserFrom)
                 {
-                    laserOutput.to = (laserFrom+1)%6;
+                    laserOutput.to = (laserFrom + 1) % 6;
                 }
                 else
                 {
-                    laserOutput.to = (laserFrom+5)%6;
+                    laserOutput.to = (laserFrom + 5) % 6;
                 }
                 this.emitLaser(laserOutput);
             }
         }
         else
         {
-            if ( ((mirrorAngle+1)/2)%6 == laserFrom || ((mirrorAngle+1)/2+1)%6 == laserFrom || ((mirrorAngle+1)/2-1)%6 == laserFrom )
+            if (((mirrorAngle + 1) / 2) % 6 == laserFrom || ((mirrorAngle + 1) / 2 + 1) % 6 == laserFrom || ((mirrorAngle + 1) / 2 - 1) % 6 == laserFrom)
             {
-                if(((mirrorAngle+1)/2+1)%6 == laserFrom)
+                if (((mirrorAngle + 1) / 2 + 1) % 6 == laserFrom)
                 {
-                    laserOutput.to = (laserFrom+4)%6;
+                    laserOutput.to = (laserFrom + 4) % 6;
                 }
-                else if(((mirrorAngle-1)/2)%6 == laserFrom)
+                else if (((mirrorAngle - 1) / 2) % 6 == laserFrom)
                 {
-                    laserOutput.to = (laserFrom+2)%6;
+                    laserOutput.to = (laserFrom + 2) % 6;
                 }
                 else
                 {
@@ -164,8 +123,8 @@
             cx.globalAlpha = 1 / (i * 2);
             cx.strokeStyle = laserData.color;
 
-            var a = (3 - laserData.to) * (Math.PI / 3) - 5*Math.PI / 6;
-            var b = (3 - laserData.to + 3 - mirrorAngle) * (Math.PI / 3) - 5*Math.PI / 6;
+            var a = (3 - laserInput.to) * (Math.PI / 3) - 5 * Math.PI / 6;
+            var b = (3 - (laserOutput.to == 5 ? -1 : laserOutput.to - 3)) * (Math.PI / 3) - 5 * Math.PI / 6;
 
             cx.beginPath();
             cx.moveTo(tileData.center.x + tileData.inner * Math.cos(a), tileData.center.y + tileData.inner * Math.sin(a));
