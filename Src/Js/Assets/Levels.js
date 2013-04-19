@@ -79,76 +79,9 @@
         },
         
 		
+		
 		{
 		    name: "02",
-		    size: 8,
-		    tiles:
-            {
-                37:
-                {
-                    type: "Emitter",
-                    emitterColor: "#FFFFFF",
-                    direction: 3
-                },
-
-                13:
-                {
-                type: "Recepter",
-                recepterColor: "#FFFFFF"
-                },
-
-                13:
-                {
-                type: "Recepter",
-                recepterColor: "#FFFFFF"
-                },
-
-                84:
-                {
-                type: "Recepter",
-                recepterColor: "#FF00FF"
-                },
-
-                41:
-                {
-                type: "Recepter",
-                recepterColor: "#FF0000"
-                },
-
-                12:
-                {
-                type: "Recepter",
-                recepterColor: "#0000FF"
-                },
-
-            },
-		    shelf:
-            [
-                {
-                    type: "Block",
-                    count: 99
-                },
-                {
-                    type: "Empty",
-                    count: 99
-                },
-                {
-                    type: "Mirror",
-                    count: 3
-                },
-                {
-                    type: "Filter",
-                    count: 1,
-                    filterColor: "#FF00FF"
-                },
-				{
-				    type: "Spliter",
-				    count: 1
-				}
-            ]
-		},
-		{
-		    name: "03",
 		    size: 8,
 		    tiles:
             {
@@ -212,7 +145,7 @@
 		},
 		
 		{
-		    name: "05",
+		    name: "03",
 		    size: 4,
 		    tiles:
             {
@@ -253,9 +186,11 @@
 				{
 					type: "Decomposor",
 					count:1
-				},
+				}
+				]
+		},
 		{
-		    name: "05",
+		    name: "04",
 		    size: 8,
 		    tiles:
             {
@@ -465,8 +400,7 @@
                 }
             ]
 		}
-            ]
-		}
+            
 		
 		
 		
