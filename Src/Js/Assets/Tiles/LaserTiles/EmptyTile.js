@@ -1,4 +1,4 @@
-function LaserTile(id, s, px, py)
+function EmptyTile(id, s, px, py)
 {
     var that = new Tile(id, s, px, py);
 

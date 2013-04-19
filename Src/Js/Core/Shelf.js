@@ -13,7 +13,7 @@
             Start: function ()
             {
                 ox = ScreenCanvas.Canvas.width * 5 / 6;
-                oy = ScreenCanvas.Canvas.height / 2 - ((dev ? items.length: Object.keys(items).length) / 2 * h);
+                oy = ScreenCanvas.Canvas.height / 2 - (items.length / 2 * h);
             },
 
             Update: function ()
@@ -21,7 +21,6 @@
                 if (dev)
                     for (var i = 0; i < items.length; i++)
                     {
-                        console.log("String Array");
                         UI.TileButton(items[i], w, ox + w * 3 / 2 * (i % 2), oy + h * 2 * Math.floor(i / 2) + h * (i % 2), function ()
                         {
                             Input.mode = "ADDITION";
@@ -29,20 +28,15 @@
                         }, { lineWidth: 4, textBaseline: "middle", font: "12pt Fury" });
                     }
                 else
-                {
-                    var i = 0;
-                    for (var o in items)
+                    for (var i = 0; i < items.length; i++)
                     {
-                        UI.TileButton(o, w, ox + w * 3 / 2 * (i % 2), oy + h * 2 * Math.floor(i / 2) + h * (i % 2), function ()
+                        UI.TileButton(items[i].type, w, ox + w * 3 / 2 * (i % 2), oy + h * 2 * Math.floor(i / 2) + h * (i % 2), function ()
                         {
                             Input.mode = "ADDITION";
-                            Input.additionCallback = window[o + "Tile"];
-                            if (o = "Filter") Input.callbackArgs = {color:items[o].color}
-                        }, { lineWidth: 4, textBaseline: "middle", font: "12pt Fury", fillStyle: !!items[o].color ? items[o].color: "#CCC"});
-                        i++
+                            Input.additionCallback = window[items[i].type + "Tile"];
+                            if (items[i].type == "Filter") Input.callbackArgs = { color: items[i].color }
+                        }, { lineWidth: 4, textBaseline: "middle", font: "12pt Fury", fillStyle: !!items[i].color ? items[i].color : "#CCC" });
                     }
-                }
-
             },
 
             Render: function ()

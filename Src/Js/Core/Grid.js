@@ -164,7 +164,7 @@
 
                 if (!gTiles)
                 {
-                var t = new LaserTile(tiles.length, tSize, _x, _y);
+                var t = new EmptyTile(tiles.length, tSize, _x, _y);
                 t.emitLaser = emitLaser;
                 t.updateTileClass = updateTileClass;
 
@@ -197,7 +197,7 @@
                             //    t = new EmitterTile({ color: "#FF0000", direction: 5 }, tiles.length, tSize, _x, _y);
                             //}
                             //else
-                            t = new LaserTile(tiles.length, tSize, _x, _y);
+                            t = new EmptyTile(tiles.length, tSize, _x, _y);
 
                             //t.emitLaser = emitLaser;
                             t.updateTileClass = updateTileClass;

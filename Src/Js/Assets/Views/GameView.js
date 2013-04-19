@@ -15,7 +15,7 @@
             shelf = new Shelf([
                 "Mirror",
                 "Block",
-                "Laser",
+                "Empty",
                 "Filter",
                 "Spliter",
                 "Emitter",

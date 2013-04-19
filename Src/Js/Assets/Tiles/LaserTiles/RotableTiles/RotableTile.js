@@ -1,8 +1,8 @@
 function RotableTile(id, s, px, py)
 {
-    var that = new LaserTile(id, s, px, py);
+    var that = new EmptyTile(id, s, px, py);
 
-    that.angle = 0;
+    that.angle = Math.PI/6;
     that.deltaAngle = Math.PI/6;
 
     that.Render = function (tileData)
@@ -34,19 +34,16 @@ function RotableTile(id, s, px, py)
         if(that.angle >= 2 * Math.PI || that.angle <= -2 * Math.PI) 
             that.angle = 0;
 
-        var t = that.angle / (Math.PI/6);
-        console.log(t)
-
     }
 
-   /* that.onRightClick = function()
+    that.onRightClick = function()
     {
         
         that.angle -= that.deltaAngle;
         if(Math.abs(that.angle - (2 * Math.PI)) < Math.PI/8) 
             that.angle = 0;
 
-    }*/
+    }
 
     return that;
 }

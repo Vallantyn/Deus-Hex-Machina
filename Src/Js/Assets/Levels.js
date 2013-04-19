@@ -27,25 +27,30 @@
                 //}
             },
             shelf:
-            {
-                Block:
+            [
                 {
+                    type: "Block",
                     count: 99
                 },
-                Laser:
                 {
+                    type: "Empty",
                     count: 99
                 },
-                Mirror:
                 {
+                    type: "Mirror",
                     count: 10
                 },
-                Filter:
                 {
+                    type: "Filter",
                     count: 2,
                     color: "#00FF00"
+                },
+                {
+                    type: "Filter",
+                    count: 2,
+                    color: "#FF0000"
                 }
-            }
+            ]
         },
         {
             name: "01",
@@ -57,16 +62,16 @@
                     type: "Spliter"
                 },
                 42:
-                {
-                    type: "Mirror",
-                    orientation: 4
-                },
+                    {
+                        type: "Mirror",
+                        orientation: 4
+                    },
                 10:
-                {
-                    type: "Emitter",
-                    color: "#FF0000",
-                    orientation: 2
-                }//,
+                    {
+                        type: "Emitter",
+                        color: "#FF0000",
+                        orientation: 2
+                    }//,
                 //21:
                 //{
                 //    type: "Objectif",
@@ -74,24 +79,24 @@
                 //}
             },
             shelf:
-            {
-                Block:
+            [
                 {
+                    type: "Block",
                     count: 99
                 },
-                Laser:
                 {
+                    type: "Empty",
                     count: 99
                 },
-                Mirror:
                 {
+                    type: "Mirror",
                     count: 10
                 },
-                Filter:
                 {
+                    type: "Filter",
                     count: 2,
                     color: "#00FF00"
                 }
-            }
+            ]
         }
     ];
