@@ -1,6 +1,5 @@
 ﻿var Levels =
     [	
-		
         {
             name: "00",
             size: 4,
@@ -211,8 +210,52 @@
                 }
             ]
 		},
+		
 		{
-		    name: "04",
+		    name: "05",
+		    size: 4,
+		    tiles:
+            {
+                29:
+                {
+                    type: "Emitter",
+                    emitterColor: "#00FF00",
+                    direction: 0
+                },
+
+                56:
+                {
+                type: "Recepter",
+                recepterColor: "#00FF00"
+                },
+
+                44:
+                {
+                type: "Recepter",
+                recepterColor: "#0000FF"
+                }
+
+            },
+		    shelf:
+            [
+                {
+                    type: "Block",
+                    count: 99
+                },
+                {
+                    type: "Empty",
+                    count: 99
+                },
+                {
+                    type: "Spliter",
+                    count: 1
+                },
+				{
+					type: "Decomposor",
+					count:1
+				},
+		{
+		    name: "05",
 		    size: 8,
 		    tiles:
             {
@@ -420,6 +463,8 @@
                     type: "Mirror",
                     count: 6
                 }
+            ]
+		}
             ]
 		}
 		
