@@ -2,17 +2,26 @@
 {
     var that = new View();
 
-    var grid;
+    var grid, shelf;
 
     that.Start = function ()
     {
         grid = new Grid(4);
+        shelf = new Shelf([
+            "Mirror",
+            "Block",
+            "Laser",
+            "Filter"
+        ]);
+
         grid.Start();
+        shelf.Start();
     }
 
     that.Update = function ()
     {
         grid.Update();
+        shelf.Update();
         grid.Draw();
     }
 

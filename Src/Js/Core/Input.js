@@ -5,6 +5,7 @@
     right: false,
     left: false,
     release: true,
+    mode : "ACTION",
 
     Update: function()
     {
@@ -44,6 +45,8 @@
 
         return false;
     },
+
+    additionCallback: function() {},
 
     onMouseUp: function (event)
     {

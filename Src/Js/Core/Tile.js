@@ -61,8 +61,21 @@
                     }
                     else if (Input.left)
                     {
-                        that.color = "#009900";
-                        this.onLeftClick();
+                        switch (Input.mode)
+                        {
+                            case "ADDITION":
+                                console.log("addition");
+
+                                this.updateTileClass(id);
+
+                                Input.mode = "ACTION";
+                                break;
+                            default:
+                                console.log("action");
+                                that.color = "#009900";
+                                this.onLeftClick();
+                                break;
+                        }
                     }
                     else if (Input.release)
                     {
@@ -75,7 +88,7 @@
                 if (lighten) that.color = "#009999";
             },
 
-            SelfUpdate: function()
+            SelfUpdate: function ()
             {
 
             },
@@ -134,7 +147,7 @@
                     cx.globalAlpha = 1 / (i * 2);
                     cx.strokeStyle = laserData.color;
 
-                    var a = (3-laserData.to) * Math.PI / 3 + Math.PI/6;
+                    var a = (3 - laserData.to) * Math.PI / 3 + Math.PI / 6;
 
                     cx.beginPath();
                     cx.moveTo(x + height * Math.cos(a), y + height * Math.sin(a));
@@ -154,7 +167,7 @@
 
             onRightClick: function ()
             {
-                
+
             },
 
             onLaser: function (laserData)
@@ -170,6 +183,21 @@
             emitLaser: function ()
             {
 
+            },
+
+            updateTileClass: function ()
+            {
+
+            },
+
+            get x()
+            {
+                return x;
+            },
+
+            get y()
+            {
+                return y;
             },
 
             get loop()

@@ -1,5 +1,6 @@
 ﻿function MirrorTile(id, s, px, py)
 {
+    console.log("new mirror tile");
     var that = new RotableTile(id, s, px, py);
 
     that.angleLaserOutput = 0;
@@ -96,6 +97,8 @@
     {
         mirrorAngle++;
         mirrorAngle %= 6;
+
+        console.log("burah");
     }
 
     that.onLaser = function (laserData)
