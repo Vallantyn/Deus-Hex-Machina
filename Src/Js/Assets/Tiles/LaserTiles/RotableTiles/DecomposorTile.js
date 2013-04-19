@@ -157,6 +157,9 @@ function DecomposorTile(id, s, px, py)
 
         var cx = tileData.context;
 
+        if(laserData.to%3!=2)
+            laserData.to = 4 - laserData.to;
+
         for (var i = 1; i < 4; i++)
         {
             cx.lineWidth = i * 4;
@@ -165,7 +168,7 @@ function DecomposorTile(id, s, px, py)
 
             console.log(laserData.to);
 
-            var a = (laserData.to) * (Math.PI / 3) - 5*Math.PI / 6;
+            var a = (laserData.to) * (Math.PI / 3) - 1*Math.PI / 6;
 
             cx.beginPath();
             cx.moveTo(tileData.center.x + tileData.inner * Math.cos(a), tileData.center.y + tileData.inner * Math.sin(a));

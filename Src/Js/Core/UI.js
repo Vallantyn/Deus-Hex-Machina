@@ -10,7 +10,7 @@
         };
 
 
-    function applyStyle(style)
+    function applyStyle(style)  
     {
         var cx = ScreenCanvas.Context;
 

@@ -13,6 +13,7 @@
         {
             grid = new Grid(4);
             shelf = new Shelf([
+
                 { type: "Empty" },
                 { type: "Block" },
                 { type: "Emitter", color: "#FF0000" },

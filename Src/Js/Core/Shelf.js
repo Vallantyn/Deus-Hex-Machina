@@ -18,9 +18,11 @@
 
             Update: function ()
             {
+
                 for (var i = 0; i < items.length; i++)
                 {
                     UI.TileButton(items[i].type, w, ox + w * 3 / 2 * (i % 2), oy + h * 2 * Math.floor(i / 2) + h * (i % 2), function ()
+
                     {
                         Input.mode = "ADDITION";
                         Input.additionCallback = window[items[i].type + "Tile"];
