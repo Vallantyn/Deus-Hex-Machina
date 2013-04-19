@@ -15,17 +15,17 @@
             shelf = new Shelf([
                 { type: "Empty" , count: 99},
                 { type: "Block", count: 99 },
-                { type: "Emitter", color: "#FF0000", count: 99 },
-                { type: "Emitter", color: "#00FF00", count: 99 },
-                { type: "Emitter", color: "#0000FF", count: 99 },
-                { type: "Recepter", color: "#FF0000", count: 99 },
-                { type: "Recepter", color: "#00FF00", count: 99 },
-                { type: "Recepter", color: "#0000FF", count: 99 },
+                { type: "Emitter", emitterColor: "#FF0000", count: 99 },
+                { type: "Emitter", emitterColor: "#00FF00", count: 99 },
+                { type: "Emitter", emitterColor: "#0000FF", count: 99 },
+                { type: "Recepter", recepterColor: "#FF0000", count: 99 },
+                { type: "Recepter", recepterColor: "#00FF00", count: 99 },
+                { type: "Recepter", recepterColor: "#0000FF", count: 99 },
                 { type: "Mirror", count: 99 },
                 { type: "Spliter", count: 99 },
-                { type: "Filter", color: "#FF0000", count: 99 },
-                { type: "Filter", color: "#00FF00", count: 99 },
-                { type: "Filter", color: "#0000FF", count: 99 },
+                { type: "Filter", filterColor: "#FF0000", count: 99 },
+                { type: "Filter", filterColor: "#00FF00", count: 99 },
+                { type: "Filter", filterColor: "#0000FF", count: 99 },
                 { type: "Decomposor", count: 99 }
             ], DEV);
         }

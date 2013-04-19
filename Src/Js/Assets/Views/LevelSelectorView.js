@@ -2,12 +2,17 @@
 {
     var that = new View();
 
-    var progression = sessionStorage.getItem("playerProgress");
-    if (!progression)
+    var progression;
+
+    if (typeof(sessionStorage) !== "undefined")
     {
-        progression = 0;
-        sessionStorage.setItem("playerProgress", progression);
-    }
+        progression = sessionStorage.getItem("playerProgress");
+        if (!progression)
+        {
+            progression = 0;
+            sessionStorage.setItem("playerProgress", progression);
+        }
+    } else progression = Infinity;
 
     var levels = 0xFF;
 
