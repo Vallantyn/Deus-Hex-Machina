@@ -48,6 +48,9 @@
         var y = t.y;
 
         var T = new Input.additionCallback(id, tSize, x, y);
+
+        if (!!Input.callbackArgs) T.filterColor = Input.callbackArgs.color;
+
         T.emitLaser = emitLaser;
         T.updateTileClass = updateTileClass;
         tiles[id] = T;

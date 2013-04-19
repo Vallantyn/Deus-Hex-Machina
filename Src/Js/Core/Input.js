@@ -46,7 +46,8 @@
         return false;
     },
 
-    additionCallback: function() {},
+    additionCallback: function () { },
+    callbackArgs: {},
 
     onMouseUp: function (event)
     {
