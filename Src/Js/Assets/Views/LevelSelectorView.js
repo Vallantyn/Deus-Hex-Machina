@@ -21,8 +21,18 @@
 
     var offsetY = 0;
 
+    var ISART = new Image();
+    ISART.src = "Src/Img/ISART_DIGITAL_Logo_Noir.png";
+
+    ISART.onloadeddata = function (event)
+    {
+    };
+
     that.Update = function ()
     {
+        var cx = ScreenCanvas.Context;
+        cx.drawImage(ISART, 40, 600);
+
         UI.Label("Choose a Level", w, w, { strokeStyle: "#CCC", fillStyle: "#CCC", font: "24pt Fury" });
         UI.TileButton("Dev", w, sx - 4 * w, sy - 2 * w, function ()
         {
