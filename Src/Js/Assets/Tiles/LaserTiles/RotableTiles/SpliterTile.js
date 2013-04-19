@@ -9,6 +9,12 @@ function SpliterTile(id, s, px, py)
     that.laser2 = {};
 
     var laserInput = {};
+
+    var lasers = [];
+    var lasersOut = [];
+    var laserOut1 = [];
+    var laserOut2 = [];
+
     var laserOutput;
 
     that.Render = function (tileData)
@@ -71,10 +77,25 @@ function SpliterTile(id, s, px, py)
             laserInput[o] = that.laser2[o];
         }*/
 
-        that.drawLaser(laserInput, tileData);
 
-        that.drawLaser(that.laser1, tileData);
-        that.drawLaser(that.laser2, tileData);
+		for (var i = 0; i < lasers.length; i++)
+		{
+		    that.drawLaser(lasers[i], tileData);
+		    //that.drawLaser(laserOut2[i], tileData);
+		}
+
+		console.log(lasersOut.length);
+
+		for (var i = 0; i < lasersOut.length; i++)
+		{
+		    that.drawLaser(lasersOut[i], tileData);
+		}
+
+		lasers = [];
+		lasersOut = [];
+
+		laserOut1 = [];
+		laserOut2 = [];
 
         laserInput = null;
         that.laser1 = null;
@@ -86,6 +107,7 @@ function SpliterTile(id, s, px, py)
 
         // =========== End Laser Debug Draw ===========
     }
+
     that.drawLaser = function (laserData, tileData)
     {
         if (!laserData) return;
@@ -97,6 +119,8 @@ function SpliterTile(id, s, px, py)
             cx.lineWidth = i * 4;
             cx.globalAlpha = 1 / (i * 2);
             cx.strokeStyle = laserData.color;
+
+            console.log(laserData.to);
 
             var a = (laserData.to) * (Math.PI / 3) - 5*Math.PI / 6;
 
@@ -110,36 +134,47 @@ function SpliterTile(id, s, px, py)
         }
 
     }
+
  	that.onLaser = function (laserData)
     {
  	    if (!laserData) return;
 
-        laserInput = laserData;
+ 	    laserInput = {};
 
-        laserData.from = id;
-
+ 	    laserInput.from = id;
+ 	    laserInput.to = laserData.to;
+ 	    laserInput.color = laserData.color;
+        
         that.laser1 = {};
         that.laser2 = {};
 
         for(var o in laserData)
         {
-            that.laser1[o] = laserData[o];
-            that.laser2[o] = laserData[o]; 
+            that.laser1[o] = laserInput[o];
+            that.laser2[o] = laserInput[o]; 
         }
 
        
-        var laserFrom = (laserData.to+3)%6;
+        var laserFrom = (laserInput.to+3)%6;
         laserInput.to = laserFrom;
         //console.log(laserFrom)
 
         that.laser1.to = laserFrom + 2 ; 
         that.laser2.to = laserFrom - 2;
+
         that.laser1.to > 5?that.laser1.to-=6:null;
         that.laser2.to < 0?that.laser2.to+=6:null;
         //console.log( laser2.to + "   " + laser.to)
 
         that.emitLaser(that.laser1);
         that.emitLaser(that.laser2);
+
+        lasers.push(laserInput);
+        lasersOut.push(that.laser1);
+        lasersOut.push(that.laser2);
+
+        laserOut1.push(that.laser1);
+        laserOut2.push(that.laser2);
 
         
         
