@@ -161,11 +161,11 @@
 
                 if (!gTiles)
                 {
-                    var t = new LaserTile(tiles.length, tSize, _x, _y);
-                    t.emitLaser = emitLaser;
-                    t.updateTileClass = updateTileClass;
+                var t = new LaserTile(tiles.length, tSize, _x, _y);
+                t.emitLaser = emitLaser;
+                t.updateTileClass = updateTileClass;
 
-                    tiles.push(t);
+                tiles.push(t);
                 }
                 else if (!!gTiles[0])
                 {

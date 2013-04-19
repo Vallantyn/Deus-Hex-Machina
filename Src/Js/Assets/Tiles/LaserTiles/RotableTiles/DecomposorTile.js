@@ -1,4 +1,4 @@
-function SpliterTile(id, s, px, py)
+function DecomposorTile(id, s, px, py)
 {
     var that = new RotableTile(id, s, px, py);
 
@@ -7,6 +7,8 @@ function SpliterTile(id, s, px, py)
     that.deltaAngle = Math.PI/3;
     that.laser1 = {};
     that.laser2 = {};
+
+    var colors = { red : "#FF0000", green : "#00FF00", blue : "#0000FF", orange : "#FF9200", yellow : "#FFFF00", purple : "#FF00FF"};
 
     var laserInput = {};
 
@@ -153,6 +155,27 @@ function SpliterTile(id, s, px, py)
             that.laser1[o] = laserInput[o];
             that.laser2[o] = laserInput[o]; 
         }
+        console.log(colors)
+        switch(laserInput.color)
+        {
+            case colors.green:
+                that.laser1["color"] = colors.yellow;
+                that.laser2["color"] = colors.blue;
+                break;
+            case colors.purple:
+                that.laser1["color"] = colors.red;
+                that.laser2["color"] = colors.blue;
+                break;
+            case colors.orange:
+                that.laser1["color"] = colors.red;
+                that.laser2["color"] = colors.yellow;
+                break;
+            default :
+                that.laser1["color"] = "#000000";
+                that.laser2["color"] = "#000000";
+                break;
+        }
+        
 
        
         var laserFrom = (laserInput.to+3)%6;

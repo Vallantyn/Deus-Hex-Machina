@@ -2,16 +2,20 @@ function FilterTile(id, s, px, py)
 {
     var that = new RotableTile(id, s, px, py);
 
-    that.filterColor = "#FF00FF";
+    that.filterColor = "#0000FF";
     that.emission = false;
-    var laserInput;
+
+
+    that.deltaAngle = Math.PI/3;
+
+    var laserInput ={};
     var laserOutput;
 
     that.Render = function (tileData)
     {
         var cx = tileData.context;
 
-        that.onLaser({angle : Math.PI/6, color : "#FFFFFF"});
+        //that.onLaser({angle : Math.PI/6, color : "#FFFFFF"});
         
 
 
@@ -23,24 +27,25 @@ function FilterTile(id, s, px, py)
 		//draw Filter
         that.itemSize = tileData.outer;
 		var tempSqrt = (Math.sqrt(2)/2);
-		var red = 0;
-        var green = 255;
-        var blue = 0;
+		var red = parseInt(that.filterColor.substr(1,2),16);
+        var green = parseInt(that.filterColor.substr(3,2),16);
+        var blue = parseInt(that.filterColor.substr(5,2),16);
+        console.log("r "+red+" g "+green+" b "+blue)
 
         cx.beginPath();
-        cx.moveTo(tileData.center.x + that.itemSize/2*Math.cos(that.angle-Math.PI/10+Math.PI+Math.PI/2),tileData.center.y + that.itemSize/2*Math.sin(that.angle-Math.PI/10+Math.PI+Math.PI/2   ));
-        cx.lineTo(tileData.center.x + that.itemSize/2*Math.cos(that.angle+Math.PI/10+Math.PI/2),tileData.center.y + that.itemSize/2*Math.sin(that.angle+Math.PI/10+Math.PI/2));
-        cx.lineTo(tileData.center.x + that.itemSize/2*Math.cos(that.angle-Math.PI/10+Math.PI/2),tileData.center.y + that.itemSize/2*Math.sin(that.angle-Math.PI/10+Math.PI/2));
-        cx.lineTo(tileData.center.x + that.itemSize/2*Math.cos(that.angle+Math.PI/10+Math.PI+Math.PI/2),tileData.center.y + that.itemSize/2*Math.sin(that.angle+Math.PI/10+Math.PI+Math.PI/2));
+        cx.moveTo(tileData.center.x + that.itemSize/2*Math.cos((that.angle + Math.PI/6)-Math.PI/10+Math.PI+Math.PI/2),tileData.center.y + that.itemSize/2*Math.sin((that.angle + Math.PI/6)-Math.PI/10+Math.PI+Math.PI/2   ));
+        cx.lineTo(tileData.center.x + that.itemSize/2*Math.cos((that.angle + Math.PI/6)+Math.PI/10+Math.PI/2),tileData.center.y + that.itemSize/2*Math.sin((that.angle + Math.PI/6)+Math.PI/10+Math.PI/2));
+        cx.lineTo(tileData.center.x + that.itemSize/2*Math.cos((that.angle + Math.PI/6)-Math.PI/10+Math.PI/2),tileData.center.y + that.itemSize/2*Math.sin((that.angle + Math.PI/6)-Math.PI/10+Math.PI/2));
+        cx.lineTo(tileData.center.x + that.itemSize/2*Math.cos((that.angle + Math.PI/6)+Math.PI/10+Math.PI+Math.PI/2),tileData.center.y + that.itemSize/2*Math.sin((that.angle + Math.PI/6)+Math.PI/10+Math.PI+Math.PI/2));
         cx.fillStyle = "rgba("+red+","+green+","+blue+",0.8)";
         cx.fill();
 
         cx.beginPath();
-        cx.arc(tileData.center.x - (that.itemSize+10*that.itemSize/250)*Math.cos(that.angle), tileData.center.y - (that.itemSize+10*that.itemSize/250)*Math.sin(that.angle), that.itemSize, (-30/180)*Math.PI + that.angle, (30/180)*Math.PI + that.angle, false);
+        cx.arc(tileData.center.x - (that.itemSize+10*that.itemSize/250)*Math.cos((that.angle + Math.PI/6)), tileData.center.y - (that.itemSize+10*that.itemSize/250)*Math.sin((that.angle + Math.PI/6)), that.itemSize, (-30/180)*Math.PI + (that.angle + Math.PI/6), (30/180)*Math.PI + (that.angle + Math.PI/6), false);
         cx.fillStyle = "rgba(0,0,0,1)";
         cx.fill();
         cx.beginPath();
-        cx.arc(tileData.center.x - (that.itemSize+10*that.itemSize/250)*Math.cos(that.angle+Math.PI), tileData.center.y - (that.itemSize+10*that.itemSize/250)*Math.sin(that.angle+Math.PI), that.itemSize, (-30/180)*Math.PI + that.angle + Math.PI, (30/180)*Math.PI + that.angle + Math.PI, false);
+        cx.arc(tileData.center.x - (that.itemSize+10*that.itemSize/250)*Math.cos((that.angle + Math.PI/6)+Math.PI), tileData.center.y - (that.itemSize+10*that.itemSize/250)*Math.sin((that.angle + Math.PI/6)+Math.PI), that.itemSize, (-30/180)*Math.PI + (that.angle + Math.PI/6) + Math.PI, (30/180)*Math.PI + (that.angle + Math.PI/6) + Math.PI, false);
         cx.fillStyle = "rgba(0,0,0,1)";
         cx.fill();
 
@@ -67,27 +72,7 @@ function FilterTile(id, s, px, py)
         */
 
 
-         //Draw Reception
-        that.drawLaser({
-            center  : tileData.center,
-            outer   : tileData.outer,
-            context : tileData.context,
-            color   : "#FFFFFF", 
-            angle   : Math.PI/6 - Math.PI
-        });
-
-
-        //Draw Emission
-        if(that.emission)
-        {
-            that.drawLaser({
-                center  : tileData.center,
-                outer   : tileData.outer,
-                context : tileData.context,
-                color   : that.colorOutput, 
-                angle   : that.angle
-            });  
-        }
+        that.drawLaser(laserInput, tileData);
 
 
 
@@ -97,44 +82,24 @@ function FilterTile(id, s, px, py)
 
  	that.onLaser = function (laserData)
     {
-    	var colorOutput = ""
-
-        //console.log("tile angle " + that.angle/Math.PI * 180)
-        //console.log("laser angle " + laserData.angle/Math.PI * 180)
-        if(Math.abs(that.angle - laserData.angle) < Math.PI/8 )
-            that.emission = true;  
-        else
-            that.emission = false;
-
-
-        for( var o in laserData.color)
-        {
-            if(o!=0)
-            {
-                var tempInt = parseInt(laserData.color[o],16) - parseInt(that.filterColor[o],16);
-                if(tempInt >= 0)
-                    colorOutput += tempInt.toString(16);
-                else
-                    colorOutput += "0"            
-            } 
-
-
-        }
-        
-        that.colorOutput = colorOutput;
+    	
 
         laserInput = laserData;
-         laserOutput = {
+        laserOutput = {
             from: that.id,
             to: laserData.to,
-            color: colorOutput
+            color: that.filterColor
         };
 
 
-        //this.emitLaser(laserOutput);
-         
-
-
+        var t = (that.angle / (Math.PI/6))%6;
+ 
+        if(t == 2 && laserData.to%3 == 2)
+            this.emitLaser(laserOutput);
+        else if(t == 0 && laserData.to%3 == 0)
+            this.emitLaser(laserOutput);
+        else if(t == 4 && laserData.to%3 == 1)
+            this.emitLaser(laserOutput);
     	
     }
 
