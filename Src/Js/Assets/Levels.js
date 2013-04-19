@@ -10,11 +10,11 @@
                     type: "Emitter",
                     emitterColor: "#FFFFFF",
                     direction: 3
-                },
+				},
                 54:
                 {
-                    type: "Recepter",
-                    recepterColor: "#FFFFFF"
+                type: "Recepter",
+                recepterColor: "#FFFFFF"
                 }
             },
             shelf:
@@ -47,18 +47,18 @@
                     },
                 34:
                 {
-                    type: "Recepter",
-                    recepterColor: "#FFFFFF"
+                type: "Recepter",
+                recepterColor: "#FFFFFF"
                 },
                 80:
                 {
-                    type: "Recepter",
-                    recepterColor: "#FFFFFF"
+                type: "Recepter",
+                recepterColor: "#FFFFFF"
                 },
                 124:
                 {
-                    type: "Recepter",
-                    recepterColor: "#FFFFFF"
+                type: "Recepter",
+                recepterColor: "#FFFFFF"
                 }
             },
             shelf:
@@ -91,23 +91,23 @@
                     },
                 47:
                 {
-                    type: "Recepter",
-                    recepterColor: "#FFFFFF"
+                type: "Recepter",
+                recepterColor: "#FFFFFF"
                 },
                 52:
                 {
-                    type: "Recepter",
-                    recepterColor: "#0000FF"
+                type: "Recepter",
+                recepterColor: "#0000FF"
                 },
                 124:
                 {
-                    type: "Recepter",
-                    recepterColor: "#FFFFFF"
+                type: "Recepter",
+                recepterColor: "#FFFFFF"
                 },
                 124:
                 {
-                    type: "Recepter",
-                    recepterColor: "#FFFFFF"
+                type: "Recepter",
+                recepterColor: "#FFFFFF"
                 }
             },
 		    shelf:
@@ -145,32 +145,32 @@
 
                 13:
                 {
-                    type: "Recepter",
-                    recepterColor: "#FFFFFF"
+                type: "Recepter",
+                recepterColor: "#FFFFFF"
                 },
 
                 13:
                 {
-                    type: "Recepter",
-                    recepterColor: "#FFFFFF"
+                type: "Recepter",
+                recepterColor: "#FFFFFF"
                 },
 
                 84:
                 {
-                    type: "Recepter",
-                    recepterColor: "#FF00FF"
+                type: "Recepter",
+                recepterColor: "#FF00FF"
                 },
 
                 41:
                 {
-                    type: "Recepter",
-                    recepterColor: "#FF0000"
+                type: "Recepter",
+                recepterColor: "#FF0000"
                 },
 
                 12:
                 {
-                    type: "Recepter",
-                    recepterColor: "#0000FF"
+                type: "Recepter",
+                recepterColor: "#0000FF"
                 },
 
             },
@@ -213,26 +213,26 @@
 
                 31:
                 {
-                    type: "Recepter",
-                    recepterColor: "#FFFFFF"
+                type: "Recepter",
+                recepterColor: "#FFFFFF"
                 },
 
                 23:
                 {
-                    type: "Recepter",
-                    recepterColor: "#0000FF"
+                type: "Recepter",
+                recepterColor: "#0000FF"
                 },
 
                 70:
                 {
-                    type: "Recepter",
-                    recepterColor: "#FF0000"
+                type: "Recepter",
+                recepterColor: "#FF0000"
                 },
 
                 121:
                 {
-                    type: "Recepter",
-                    recepterColor: "#FF0000"
+                type: "Recepter",
+                recepterColor: "#FF0000"
                 },
 
             },
@@ -256,10 +256,10 @@
                     filterColor: "#0000FF"
                 },
 				{
-				    type: "Filter",
-				    count: 1,
-				    filterColor: "#FF0000"
-				}
+                    type: "Filter",
+                    count: 1,
+                    filterColor: "#FF0000"
+                }
             ]
 		}
     ];
