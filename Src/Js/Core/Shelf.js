@@ -25,7 +25,7 @@
                         {
                             Input.mode = "ADDITION";
                             Input.additionCallback = window[items[i] + "Tile"];
-                        }, { lineWidth: 4, textBaseline: "middle", font: "12pt Fury" });
+                        }, { lineWidth: 4, textBaseline: "middle", font: "12pt Fury", fillStyle: !!items[i].color ? items[i].color : "#CCC"  });
                     }
                 else
                     for (var i = 0; i < items.length; i++)

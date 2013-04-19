@@ -16,7 +16,7 @@
                 "Mirror",
                 "Block",
                 "Empty",
-                "Filter",
+                {Type : "Filter", color : "#FF0000"},
                 "Spliter",
                 "Emitter",
                 "Decomposor"
