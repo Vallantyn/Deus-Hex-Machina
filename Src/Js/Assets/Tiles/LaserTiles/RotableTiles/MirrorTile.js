@@ -14,10 +14,6 @@
     {
         var cx = tileData.context;
 
-        //that.onLaser({angle : Math.PI/6});
-
-
-
         if (that.over) cx.fill();
         cx.stroke();
 
@@ -97,7 +93,6 @@
     {
         mirrorAngle++;
         mirrorAngle %= 12;
-        console.log("Angle mirror : " + mirrorAngle);
     }
 
     that.onRightClick = function ()
@@ -105,7 +100,6 @@
         mirrorAngle--;
         if (mirrorAngle==-1)
             mirrorAngle=11;
-        console.log("Angle mirror : " + mirrorAngle);
     }
 
     that.onLaser = function (laserData)
@@ -113,15 +107,12 @@
         var laserInput = laserData;
         var laserOutput = laserData;
         var laserFrom = (laserInput.to+3)%6;
-        // console.log("LaserInput : " + laserFrom);
-        // console.log("mirrorAngle : " + mirrorAngle);
 
         that.laser = laserInput;
 
         laserOutput.from = that.id;
         if (mirrorAngle%2 == 0)
         {
-            console.log("paire // mirrorAngle : " + mirrorAngle);
             if (mirrorAngle/2 == laserFrom || (mirrorAngle/2+1)%6 == laserFrom)
             {
                 if(mirrorAngle/2 == laserFrom)
@@ -132,18 +123,15 @@
                 {
                     laserOutput.to = (laserFrom+5)%6;
                 }
-                console.log("output : " + laserOutput.to);
                 this.emitLaser(laserOutput);
             }
         }
         else
         {
-            console.log("impaire // mirrorAngle : " + mirrorAngle);
             if ( ((mirrorAngle+1)/2)%6 == laserFrom || ((mirrorAngle+1)/2+1)%6 == laserFrom || ((mirrorAngle+1)/2-1)%6 == laserFrom )
             {
                 if(((mirrorAngle+1)/2+1)%6 == laserFrom)
                 {
-                    console.log((laserFrom+4)%6);
                     laserOutput.to = (laserFrom+4)%6;
                 }
                 else if(((mirrorAngle-1)/2)%6 == laserFrom)
@@ -152,10 +140,8 @@
                 }
                 else
                 {
-                    console.log("test : " + laserFrom);
                     laserOutput.to = laserFrom;
                 }
-                console.log("output : " + laserOutput.to);
                 this.emitLaser(laserOutput);
             }
         }
@@ -192,8 +178,6 @@
     //{
 
     //}
-
-
-
+    
     return that;
 }
