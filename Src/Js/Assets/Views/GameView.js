@@ -11,7 +11,8 @@
             "Mirror",
             "Block",
             "Laser",
-            "Filter"
+            "Filter",
+            "Spliter"
         ]);
 
         grid.Start();

@@ -72,10 +72,12 @@ function SpliterTile(id, s, px, py)
         }*/
 
         that.drawLaser(laserInput, tileData);
-
         that.drawLaser(that.laser1, tileData);
-
         that.drawLaser(that.laser2, tileData);
+
+        laserInput = null;
+        that.laser1 = null;
+        that.laser2 = null;
 
 
         
@@ -85,6 +87,7 @@ function SpliterTile(id, s, px, py)
     }
     that.drawLaser = function (laserData, tileData)
     {
+        if (!laserData) return;
 
         var cx = tileData.context;
 
@@ -104,15 +107,17 @@ function SpliterTile(id, s, px, py)
 
             cx.globalAlpha = 1;
         }
-
     }
  	that.onLaser = function (laserData)
     {
-
+ 	    if (!laserData) return;
 
         laserInput = laserData;
 
         laserData.from = id;
+
+        that.laser1 = {};
+        that.laser2 = {};
 
         for(var o in laserData)
         {
