@@ -142,7 +142,7 @@
 
     that.drawLaser = function (laserData, tileData)
     {
-        if (!laserInput) return;
+        if (!laserData) return;
 
         var cx = tileData.context;
 
@@ -152,8 +152,8 @@
             cx.globalAlpha = 1 / (i * 2);
             cx.strokeStyle = laserData.color;
 
-            var a = (3 - laserInput.to) * (Math.PI / 3) - 5*Math.PI / 6;
-            var b = (3 - laserInput.to + 3 - mirrorAngle) * (Math.PI / 3) - 5*Math.PI / 6;
+            var a = (3 - laserData.to) * (Math.PI / 3) - 5*Math.PI / 6;
+            var b = (3 - laserData.to + 3 - mirrorAngle) * (Math.PI / 3) - 5*Math.PI / 6;
 
             cx.beginPath();
             cx.moveTo(tileData.center.x + tileData.inner * Math.cos(a), tileData.center.y + tileData.inner * Math.sin(a));
@@ -164,7 +164,7 @@
             cx.globalAlpha = 1;
         }
 
-        laserInput = null;
+        laserData = null;
     }
 
     //that.emitLaser = function ()

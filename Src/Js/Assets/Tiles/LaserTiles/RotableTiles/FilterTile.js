@@ -4,6 +4,8 @@ function FilterTile(id, s, px, py)
 
     that.filterColor = "#FF00FF";
     that.emission = false;
+    var laserInput;
+    var laserOutput;
 
     that.Render = function (tileData)
     {
@@ -120,6 +122,17 @@ function FilterTile(id, s, px, py)
         }
         
         that.colorOutput = colorOutput;
+
+        laserInput = laserData;
+         laserOutput = {
+            from: that.id,
+            to: laserData.to,
+            color: colorOutput
+        };
+
+
+        //this.emitLaser(laserOutput);
+         
 
 
     	
