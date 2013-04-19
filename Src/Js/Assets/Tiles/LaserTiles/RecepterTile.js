@@ -36,7 +36,8 @@
             cx.fill();
         }
 
-        that.angle -= Math.PI/200;
+        if(that.active)
+            that.angle -= Math.PI/200;
 
         that.drawLaser(laser, tileData);
         laser = null;
