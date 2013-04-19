@@ -18,6 +18,11 @@
 
             Update: function ()
             {
+                UI.TileButton("Back", w, w*2, h*2, function ()
+                {
+                    Director.changeScene(new LevelSelectorView());
+                }, { lineWidth: 4, textBaseline: "middle", font: "12pt Fury" });
+
                 for (var i = 0; i < items.length; i++)
                 {
                     if (items[i].count > 0)
