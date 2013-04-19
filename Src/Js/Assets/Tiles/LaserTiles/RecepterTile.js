@@ -64,11 +64,6 @@
         that.laser = null;
     }
 
-    that.SelfUpdate = function()
-    {
-        that.active = false;
-    }
-
     that.onLaser = function (laserData)
     {
         that.active = this.onRecepter(laserData, { color: that.recepterColor });

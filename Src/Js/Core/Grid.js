@@ -181,8 +181,7 @@
 
     function onRecepter(laserData, tileData)
     {
-        if (laserData.color == tileData.color) return true;
-        else return false;
+        return (laserData.color == tileData.color)
     }
 
     var that =
@@ -302,6 +301,8 @@
                     tiles[i].Update();
                 }
 
+                console.log(checkCompletion());
+
                 if (checkCompletion() && !ended)
                 {
                     ended = true;
@@ -333,7 +334,7 @@
 
     function checkCompletion()
     {
-        if (that.recepters.length == 0) return false;
+        //if (that.recepters.length == 0) return null;
 
         for (var i = 0; i < that.recepters.length; i++)
         {

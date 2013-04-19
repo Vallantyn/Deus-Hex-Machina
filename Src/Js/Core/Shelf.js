@@ -1,6 +1,7 @@
 ﻿function Shelf(itemArray, dev)
 {
-    var items = itemArray;
+    var items = []
+    items = itemArray;
     var shelf = [];
 
     var ox, oy;
@@ -18,7 +19,7 @@
 
             Update: function ()
             {
-                UI.TileButton("Back", w, w*2, h*2, function ()
+                UI.TileButton("Back", w, w * 2, h * 2, function ()
                 {
                     Director.changeScene(new LevelSelectorView());
                 }, { lineWidth: 4, textBaseline: "middle", font: "12pt Fury" });
