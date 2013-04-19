@@ -2,6 +2,13 @@
 {
     var that = new View();
 
+    var progression = sessionStorage.getItem("playerProgress");
+    if (!progression)
+    {
+        progression = 0;
+        sessionStorage.setItem("playerProgress", progression);
+    }
+
     var levels = 0xFF;
 
     var sx = ScreenCanvas.Canvas.width *2/5, sy = 250, w = 40, h;

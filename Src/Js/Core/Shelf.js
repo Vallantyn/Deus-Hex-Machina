@@ -26,6 +26,7 @@
                         Input.additionCallback = window[items[i].type + "Tile"];
                         if (items[i].type == "Filter") Input.callbackArgs = { filterColor: items[i].color };
                         else if (items[i].type == "Emitter") Input.callbackArgs = { emitterColor: items[i].color };
+                        else if (items[i].type == "Recepter") Input.callbackArgs = { recepterColor: items[i].color };
                     }, { lineWidth: 4, textBaseline: "middle", font: "12pt Fury", fillStyle: !!items[i].color ? items[i].color : "#CCC" });
                 }
             },

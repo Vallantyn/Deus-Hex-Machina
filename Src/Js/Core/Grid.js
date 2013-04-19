@@ -56,6 +56,9 @@
                 T[o] = Input.callbackArgs[o];
             }
         }
+
+        T.onRecepter = onRecepter;
+
         T.emitLaser = emitLaser;
         T.updateTileClass = updateTileClass;
         tiles[id] = T;
@@ -155,8 +158,15 @@
         tiles[T].onLaser(laserData);
     }
 
+    function onRecepter(laserData, tileData)
+    {
+        if (laserData.color == tileData.color) return true;
+        else return false;
+    }
+
     var that =
         {
+            recepters: [],
             Start: function ()
             {
                 var ox = ScreenCanvas.Canvas.width / 2,
@@ -179,6 +189,14 @@
                 {
                     console.log(gTiles[0].type + "Tile");
                     var t = new window[gTiles[0].type + "Tile"](tiles.length, tSize, _x, _y);
+                    t.emitLaser = emitLaser;
+                    t.updateTileClass = updateTileClass;
+
+                    tiles.push(t);
+                }
+                else
+                {
+                    var t = new EmptyTile(tiles.length, tSize, _x, _y);
                     t.emitLaser = emitLaser;
                     t.updateTileClass = updateTileClass;
 
@@ -212,6 +230,20 @@
                         else
                         {
                             t = new window[gTiles[tiles.length].type + "Tile"](tiles.length, tSize, _x, _y);
+                            
+                            for (var o in gTiles[tiles.length])
+                            {
+                                if (o != "type")
+                                {
+                                    t[o] = gTiles[tiles.length][o];
+                                }
+                            }
+
+                            if (gTiles[tiles.length].type == "Recepter")
+                            {
+                                t.onRecepter = onRecepter;
+                                that.recepters.push(t);
+                            }
                         }
 
                         t.emitLaser = emitLaser;
@@ -248,6 +280,8 @@
                 {
                     tiles[i].Update();
                 }
+
+                if (console.log) "Yataa !";
             },
 
             Draw: function ()
@@ -258,6 +292,16 @@
                 }
             }
         }
+
+    function checkCompletion()
+    {
+        for (var i = 0; i < that.recepters.length; i++)
+        {
+            if (!that.recepters[i].active) return false;
+        }
+        return true;
+    }
+    
 
     return that;
 }
