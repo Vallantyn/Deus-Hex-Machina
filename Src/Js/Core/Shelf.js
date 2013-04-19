@@ -57,9 +57,9 @@
                                 I.count++;
                             }
 
-                            if (items[i].type == "Filter") Input.callbackArgs = { filterColor: items[i].color };
-                            else if (items[i].type == "Emitter") Input.callbackArgs = { emitterColor: items[i].color };
-                            else if (items[i].type == "Recepter") Input.callbackArgs = { recepterColor: items[i].color };
+                            if (items[i].type == "Filter") Input.callbackArgs = { filterColor: items[i].filterColor };
+                            else if (items[i].type == "Emitter") Input.callbackArgs = { emitterColor: items[i].emitterColor };
+                            else if (items[i].type == "Recepter") Input.callbackArgs = { recepterColor: items[i].recepterColor };
                         }, { lineWidth: 4, textBaseline: "middle", font: "12pt Fury", fillStyle: !!items[i].color ? items[i].color : "#CCC" });
 
                         var _x = ScreenCanvas.Context.measureText("x" + items[i].count).width / 2;
