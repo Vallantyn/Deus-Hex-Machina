@@ -5,35 +5,17 @@
             size: 4,
             tiles:
             {
-                42:
+                38:
                 {
                     type: "Emitter",
-                    emitterColor: "#FF0000",
-                    direction: 5
-                },
-                10:
+                    emitterColor: "#FFFFFF",
+                    direction: 3
+				},
+                54:
                 {
-                    type: "Recepter",
-                    recepterColor: "#FF0000"
-                    //direction: 5
-                },
-                21:
-                {
-                    type: "Emitter",
-                    emitterColor: "#00FF00",
-                    direction: 5
-                },
-                5:
-                {
-                    type: "Recepter",
-                    recepterColor: "#00FF00"
-                    //direction: 5
-                }//,
-                //31:
-                // {
-                // type: "Objectif",
-                // color: "#FFFFFF"
-                // }
+                type: "Recepter",
+                RecepterColor: "#FFFFFF"
+                }
             },
             shelf:
             [
@@ -60,24 +42,24 @@
                 25:
                     {
                         type: "Emitter",
-                        color: "#FFFFFF",
-                        orientation: 5
-                    }//,
-                // 34:
-                // {
-                // type: "Objectif",
-                // color: "#FFFFFF"
-                // },
-                // 80:
-                // {
-                // type: "Objectif",
-                // color: "#FFFFFF"
-                // },
-                // 124:
-                // {
-                // type: "Objectif",
-                // color: "#FFFFFF"
-                // }
+                        emitterColor: "#FFFFFF",
+                        direction: 5
+                    },
+                34:
+                {
+                type: "Recepter",
+                RecepterColor: "#FFFFFF"
+                },
+                80:
+                {
+                type: "Recepter",
+                RecepterColor: "#FFFFFF"
+                },
+                124:
+                {
+                type: "Recepter",
+                RecepterColor: "#FFFFFF"
+                }
             },
             shelf:
             [
@@ -104,29 +86,29 @@
                 41:
                     {
                         type: "Emitter",
-                        color: "#FFFFFF",
-                        orientation: 3
-                    }//,
-                // 47:
-                // {
-                // type: "Objectif",
-                // color: "#FFFFFF"
-                // },
-                // 52:
-                // {
-                // type: "Objectif",
-                // color: "#0000FF"
-                // },
-                // 124:
-                // {
-                // type: "Objectif",
-                // color: "#FFFFFF"
-                // },
-                // 124:
-                // {
-                // type: "Objectif",
-                // color: "#FFFFFF"
-                // }
+                        emitterColor: "#FFFFFF",
+                        direction: 3
+                    },
+                47:
+                {
+                type: "Recepter",
+                RecepterColor: "#FFFFFF"
+                },
+                52:
+                {
+                type: "Recepter",
+                RecepterColor: "#0000FF"
+                },
+                124:
+                {
+                type: "Recepter",
+                RecepterColor: "#FFFFFF"
+                },
+                124:
+                {
+                type: "Recepter",
+                RecepterColor: "#FFFFFF"
+                }
             },
 		    shelf:
             [
@@ -145,7 +127,7 @@
 				{
 				    type: "Filter",
 				    count: 1,
-				    color: "#0000FF"
+				    filterColor: "#0000FF"
 				}
             ]
 		},
@@ -157,39 +139,39 @@
                 37:
                 {
                     type: "Emitter",
-                    color: "#FFFFFF",
-                    orientation: 3
-                }//,
+                    emitterColor: "#FFFFFF",
+                    direction: 3
+                },
 
-                // 13:
-                // {
-                // type: "Objectif",
-                // color: "#FFFFFF"
-                // },
+                13:
+                {
+                type: "Recepter",
+                RecepterColor: "#FFFFFF"
+                },
 
-                // 13:
-                // {
-                // type: "Objectif",
-                // color: "#FFFFFF"
-                // },
+                13:
+                {
+                type: "Recepter",
+                RecepterColor: "#FFFFFF"
+                },
 
-                // 84:
-                // {
-                // type: "Objectif",
-                // color: "#FF00FF"
-                // },
+                84:
+                {
+                type: "Recepter",
+                RecepterColor: "#FF00FF"
+                },
 
-                // 41:
-                // {
-                // type: "Objectif",
-                // color: "#FF0000"
-                // },
+                41:
+                {
+                type: "Recepter",
+                RecepterColor: "#FF0000"
+                },
 
-                // 12:
-                // {
-                // type: "Objectif",
-                // color: "#0000FF"
-                // },
+                12:
+                {
+                type: "Recepter",
+                RecepterColor: "#0000FF"
+                },
 
             },
 		    shelf:
@@ -209,12 +191,75 @@
                 {
                     type: "Filter",
                     count: 1,
-                    color: "#FF00FF"
+                    filterColor: "#FF00FF"
                 },
 				{
 				    type: "Spliter",
 				    count: 1
 				}
+            ]
+		},
+		{
+		    name: "04",
+		    size: 8,
+		    tiles:
+            {
+                124:
+                {
+                    type: "Emitter",
+                    emitterColor: "#FFFFFF",
+                    direction: 3
+                },
+
+                31:
+                {
+                type: "Recepter",
+                RecepterColor: "#FFFFFF"
+                },
+
+                23:
+                {
+                type: "Recepter",
+                RecepterColor: "#0000FF"
+                },
+
+                70:
+                {
+                type: "Recepter",
+                RecepterColor: "#FF0000"
+                },
+
+                121:
+                {
+                type: "Recepter",
+                RecepterColor: "#FF0000"
+                },
+
+            },
+		    shelf:
+            [
+                {
+                    type: "Block",
+                    count: 99
+                },
+                {
+                    type: "Empty",
+                    count: 99
+                },
+                {
+                    type: "Mirror",
+                    count: 3
+                },
+                {
+                    type: "Filter",
+                    count: 1,
+                    filterColor: "#0000FF"
+                },
+				{
+                    type: "Filter",
+                    count: 1,
+                    filterColor: "#FF0000"
+                }
             ]
 		}
     ];
