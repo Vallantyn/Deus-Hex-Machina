@@ -14,7 +14,7 @@
                 54:
                 {
                 type: "Recepter",
-                RecepterColor: "#FFFFFF"
+                recepterColor: "#FFFFFF"
                 }
             },
             shelf:
@@ -48,17 +48,17 @@
                 34:
                 {
                 type: "Recepter",
-                RecepterColor: "#FFFFFF"
+                recepterColor: "#FFFFFF"
                 },
                 80:
                 {
                 type: "Recepter",
-                RecepterColor: "#FFFFFF"
+                recepterColor: "#FFFFFF"
                 },
                 124:
                 {
                 type: "Recepter",
-                RecepterColor: "#FFFFFF"
+                recepterColor: "#FFFFFF"
                 }
             },
             shelf:
@@ -92,22 +92,22 @@
                 47:
                 {
                 type: "Recepter",
-                RecepterColor: "#FFFFFF"
+                recepterColor: "#FFFFFF"
                 },
                 52:
                 {
                 type: "Recepter",
-                RecepterColor: "#0000FF"
+                recepterColor: "#0000FF"
                 },
                 124:
                 {
                 type: "Recepter",
-                RecepterColor: "#FFFFFF"
+                recepterColor: "#FFFFFF"
                 },
                 124:
                 {
                 type: "Recepter",
-                RecepterColor: "#FFFFFF"
+                recepterColor: "#FFFFFF"
                 }
             },
 		    shelf:
@@ -146,31 +146,31 @@
                 13:
                 {
                 type: "Recepter",
-                RecepterColor: "#FFFFFF"
+                recepterColor: "#FFFFFF"
                 },
 
                 13:
                 {
                 type: "Recepter",
-                RecepterColor: "#FFFFFF"
+                recepterColor: "#FFFFFF"
                 },
 
                 84:
                 {
                 type: "Recepter",
-                RecepterColor: "#FF00FF"
+                recepterColor: "#FF00FF"
                 },
 
                 41:
                 {
                 type: "Recepter",
-                RecepterColor: "#FF0000"
+                recepterColor: "#FF0000"
                 },
 
                 12:
                 {
                 type: "Recepter",
-                RecepterColor: "#0000FF"
+                recepterColor: "#0000FF"
                 },
 
             },
@@ -214,25 +214,25 @@
                 31:
                 {
                 type: "Recepter",
-                RecepterColor: "#FFFFFF"
+                recepterColor: "#FFFFFF"
                 },
 
                 23:
                 {
                 type: "Recepter",
-                RecepterColor: "#0000FF"
+                recepterColor: "#0000FF"
                 },
 
                 70:
                 {
                 type: "Recepter",
-                RecepterColor: "#FF0000"
+                recepterColor: "#FF0000"
                 },
 
                 121:
                 {
                 type: "Recepter",
-                RecepterColor: "#FF0000"
+                recepterColor: "#FF0000"
                 },
 
             },
