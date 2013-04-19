@@ -5,7 +5,7 @@ function FilterTile(id, s, px, py)
     that.filterColor = "#0000FF";
     that.emission = false;
 
-
+    that.angle = Math.PI/3 ;
     that.deltaAngle = Math.PI/3;
 
     var laserInput ={};

@@ -13,13 +13,18 @@
         {
             grid = new Grid(4);
             shelf = new Shelf([
-                "Mirror",
-                "Block",
-                "Empty",
-                {Type : "Filter", color : "#FF0000"},
-                "Spliter",
-                "Emitter",
-                "Decomposor"
+
+                { type: "Empty" },
+                { type: "Block" },
+                { type: "Emitter", color: "#FF0000" },
+                { type: "Emitter", color: "#00FF00" },
+                { type: "Emitter", color: "#0000FF" },
+                { type: "Mirror" },
+                { type: "Spliter" },
+                { type: "Filter", color: "#FF0000" },
+                { type: "Filter", color: "#00FF00" },
+                { type: "Filter", color: "#0000FF" },
+                { type: "Decomposor" }
             ], true);
         }
         else

@@ -49,8 +49,13 @@
 
         var T = new Input.additionCallback(id, tSize, x, y);
 
-        if (!!Input.callbackArgs) T.filterColor = Input.callbackArgs.color;
-
+        if (!!Input.callbackArgs)
+        {
+            for (var o in Input.callbackArgs)
+            {
+                T[o] = Input.callbackArgs[o];
+            }
+        }
         T.emitLaser = emitLaser;
         T.updateTileClass = updateTileClass;
         tiles[id] = T;
@@ -111,7 +116,7 @@
                         }
                         break;
 
-                    case t.loop +1:
+                    case t.loop + 1:
                         if (isCorner || orientation != 0)
                         {
                             T = (target == orientation) ? id + orientation + t.loop * 6 :
@@ -125,7 +130,7 @@
                         }
                         break;
 
-                    case t.loop -1:
+                    case t.loop - 1:
                         if (isCorner)
                         {
                             T = t.loop == 1 ? 0 : id - orientation - (t.loop - 1) * 6;
@@ -164,16 +169,16 @@
 
                 if (!gTiles)
                 {
-                var t = new EmptyTile(tiles.length, tSize, _x, _y);
-                t.emitLaser = emitLaser;
-                t.updateTileClass = updateTileClass;
+                    var t = new EmptyTile(tiles.length, tSize, _x, _y);
+                    t.emitLaser = emitLaser;
+                    t.updateTileClass = updateTileClass;
 
-                tiles.push(t);
+                    tiles.push(t);
                 }
                 else if (!!gTiles[0])
                 {
                     console.log(gTiles[0].type + "Tile");
-                    var t = new window[gTiles[0].type+"Tile"](tiles.length, tSize, _x, _y);
+                    var t = new window[gTiles[0].type + "Tile"](tiles.length, tSize, _x, _y);
                     t.emitLaser = emitLaser;
                     t.updateTileClass = updateTileClass;
 
@@ -206,12 +211,7 @@
                         }
                         else
                         {
-                            console.log(gTiles[tiles.length].type + "Tile");
-
-                            if (gTiles[tiles.length].type != "Emitter")
-                            {
-                                t = new window[gTiles[tiles.length].type + "Tile"](tiles.length, tSize, _x, _y);
-                            } else t = new window[gTiles[tiles.length].type + "Tile"]({ color: gTiles[tiles.length].color, direction: gTiles[tiles.length].orientation }, tiles.length, tSize, _x, _y);
+                            t = new window[gTiles[tiles.length].type + "Tile"](tiles.length, tSize, _x, _y);
                         }
 
                         t.emitLaser = emitLaser;
