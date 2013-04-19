@@ -1,8 +1,11 @@
-﻿function Grid(gridSize)
+﻿function Grid(gridSize, gridTiles)
 {
-    var tiles, gSize, tSize;
+    var tiles, gSize, gTiles, tSize;
 
     gSize = gridSize;
+    gTiles = gridTiles;
+
+
     var _t = ScreenCanvas.Canvas.height / (gridSize * 2 + 1);
     tSize = Math.sqrt(_t * _t - _t / 2 * _t / 2) / 2;
 
@@ -156,11 +159,23 @@
 
                 tiles = [];
 
-                var t = new LaserTile(tiles.length, tSize, _x, _y);
-                t.emitLaser = emitLaser;
-                t.updateTileClass = updateTileClass;
+                if (!gTiles)
+                {
+                    var t = new LaserTile(tiles.length, tSize, _x, _y);
+                    t.emitLaser = emitLaser;
+                    t.updateTileClass = updateTileClass;
 
-                tiles.push(t);
+                    tiles.push(t);
+                }
+                else if (!!gTiles[0])
+                {
+                    console.log(gTiles[0].type + "Tile");
+                    var t = new window[gTiles[0].type+"Tile"](tiles.length, tSize, _x, _y);
+                    t.emitLaser = emitLaser;
+                    t.updateTileClass = updateTileClass;
+
+                    tiles.push(t);
+                }
 
                 for (var i = 0; i <= gSize; i++)
                 {
@@ -170,20 +185,35 @@
                     {
                         var t;
 
-                        if (j == 4)
-                            t = new SpliterTile(tiles.length, tSize, _x, _y);
-                        else if (tiles.length == 42)
+                        if (!gTiles || !gTiles[tiles.length])
                         {
-                            t = new EmitterTile({ color: "#FF0000", direction: 5 }, tiles.length, tSize, _x, _y);
-                        }
-                        else t = new LaserTile(tiles.length, tSize, _x, _y);
+                            //if (j == 2)
+                            //    t = new MirrorTile(tiles.length, tSize, _x, _y);
+                            //else if (tiles.length == 42)
+                            //{
+                            //    t = new EmitterTile({ color: "#FF0000", direction: 5 }, tiles.length, tSize, _x, _y);
+                            //}
+                            //else
+                            t = new LaserTile(tiles.length, tSize, _x, _y);
 
+                            //t.emitLaser = emitLaser;
+                            t.updateTileClass = updateTileClass;
+
+                            //tiles.push(t);
+                        }
+                        else
+                        {
+                            console.log(gTiles[tiles.length].type + "Tile");
+
+                            if (gTiles[tiles.length].type != "Emitter")
+                            {
+                                t = new window[gTiles[tiles.length].type + "Tile"](tiles.length, tSize, _x, _y);
+                            } else t = new window[gTiles[tiles.length].type + "Tile"]({ color: gTiles[tiles.length].color, direction: gTiles[tiles.length].orientation }, tiles.length, tSize, _x, _y);
+                        }
 
                         t.emitLaser = emitLaser;
-                        t.updateTileClass = updateTileClass;
 
                         tiles.push(t);
-
 
                         if (j % i == 0) dAngle -= Math.PI / 3;
 
