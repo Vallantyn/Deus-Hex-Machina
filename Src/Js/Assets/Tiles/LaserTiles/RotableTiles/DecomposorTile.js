@@ -23,7 +23,7 @@ function DecomposorTile(id, s, px, py)
     {
         var cx = tileData.context;
         that.itemSize = tileData.outer;
-        //that.onLaser({that.angle : Math.PI/6});
+        //that.onLaser({that.that.angle : Math.PI/6});
         
 
 
@@ -31,26 +31,67 @@ function DecomposorTile(id, s, px, py)
         cx.stroke();
 
 		that.itemSize= tileData.outer;
-//DrawSpliter
-        var tempSqrt = (Math.sqrt(2) / 2);
-		for (var i=0;i<10;i++)
-        {
-                 cx.beginPath();
-                 cx.moveTo(tileData.center.x + (that.itemSize-(i*i)*that.itemSize/250)*tempSqrt*Math.cos((that.angle/180)*Math.PI) , tileData.center.y + (that.itemSize-(i*i)*that.itemSize/250)*tempSqrt*Math.sin((that.angle/180)*Math.PI) );
-                 cx.lineTo(tileData.center.x + (that.itemSize-(i*i)*that.itemSize/250)*tempSqrt*Math.cos(((that.angle+ 120)/180)*Math.PI) , tileData.center.y + (that.itemSize-(i*i)*that.itemSize/250)*tempSqrt*Math.sin(((that.angle+ 120)/180)*Math.PI) );
-                 cx.lineTo(tileData.center.x + (that.itemSize-(i*i)*that.itemSize/250)*tempSqrt*Math.cos(((that.angle+ 240)/180)*Math.PI) , tileData.center.y + (that.itemSize-(i*i)*that.itemSize/250)*tempSqrt*Math.sin(((that.angle + 240)/180)*Math.PI) );
+/// draw splicer
+                var angleRadiant = (that.angle/180)*Math.PI;
+                var tempSqrt = Math.sqrt(2)/2;
+                
+                cx.beginPath()
+                cx.arc(tileData.center.x, tileData.center.y , that.itemSize*tempSqrt-2, 0 , 7, false);
+                cx.fillStyle = "rgba(50,50,50,1)";
+                cx.fill();
+                cx.beginPath()
+                cx.arc(tileData.center.x, tileData.center.y , (that.itemSize*240/250)*tempSqrt-2, 0 , 7, false);
+                cx.fillStyle = "rgba(150,150,150,1)";
+                cx.fill();
+                cx.beginPath()
+                cx.arc(tileData.center.x, tileData.center.y , (that.itemSize*225/250)*tempSqrt-2, 0 , 7, false);
+                cx.fillStyle = "rgba(200,200,200,1)";
+                cx.fill();
+                cx.beginPath()
+                cx.arc(tileData.center.x, tileData.center.y , (that.itemSize*205/250)*tempSqrt-2, 0 , 7, false);
+                cx.fillStyle = "rgba(255,255,255,1)";
+                cx.fill();
+
+                for (i = 0; i<10; i++){
+                 cx.beginPath()
+                 cx.arc(tileData.center.x, tileData.center.y , (that.itemSize-(i*i)*that.itemSize/250)*tempSqrt, 0 , 7, false);
                  cx.fillStyle = "rgba("+(i*40)+","+(i*40)+","+(i*40)+",1)";
                  cx.fill();
-                 for (var j=0;j<3;j++)
-                    {
-                    cx.beginPath();
-                    cx.moveTo(tileData.center.x,tileData.center.y);
-                    cx.lineTo(tileData.center.x + (that.itemSize-(i*i)*that.itemSize/250)*tempSqrt*Math.cos(((that.angle + j*120)/180)*Math.PI) , tileData.center.y + (that.itemSize-(i*i)*that.itemSize/250)*tempSqrt*Math.sin(((that.angle + j*120)/180)*Math.PI) );
-                    cx.strokeStyle = "rgba("+(i*15)+","+(i*15)+","+(i*15)+",1)";
-                    cx.stroke();
-                 }
-        }
-//End DrawSpliter
+                }
+
+                cx.beginPath();
+                cx.moveTo(tileData.center.x + that.itemSize*tempSqrt*Math.cos(((that.angle-10)/180)*Math.PI) , tileData.center.y + that.itemSize*tempSqrt*Math.sin(((that.angle-10)/180)*Math.PI) );
+                cx.lineTo(tileData.center.x + that.itemSize*tempSqrt*Math.cos(((that.angle+10)/180)*Math.PI) , tileData.center.y + that.itemSize*tempSqrt*Math.sin(((that.angle+10)/180)*Math.PI) );
+
+                cx.lineTo(tileData.center.x + that.itemSize/5*Math.cos(((that.angle+60)/180)*Math.PI) , tileData.center.y + that.itemSize/5*Math.sin(((that.angle+60)/180)*Math.PI) );
+
+                cx.lineTo(tileData.center.x + that.itemSize*tempSqrt*Math.cos(((that.angle-10+ 120)/180)*Math.PI) , tileData.center.y + that.itemSize*tempSqrt*Math.sin(((that.angle-10+ 120)/180)*Math.PI) );
+                cx.lineTo(tileData.center.x + that.itemSize*tempSqrt*Math.cos(((that.angle+10+ 120)/180)*Math.PI) , tileData.center.y + that.itemSize*tempSqrt*Math.sin(((that.angle+10+ 120)/180)*Math.PI) );
+
+                cx.lineTo(tileData.center.x + that.itemSize/5*Math.cos(((that.angle+180)/180)*Math.PI) , tileData.center.y + that.itemSize/5*Math.sin(((that.angle+180)/180)*Math.PI) );
+
+                cx.lineTo(tileData.center.x + that.itemSize*tempSqrt*Math.cos(((that.angle-10+ 240)/180)*Math.PI) , tileData.center.y + that.itemSize*tempSqrt*Math.sin(((that.angle-10+ 240)/180)*Math.PI) );
+                cx.lineTo(tileData.center.x + that.itemSize*tempSqrt*Math.cos(((that.angle+10+ 240)/180)*Math.PI) , tileData.center.y + that.itemSize*tempSqrt*Math.sin(((that.angle+10+ 240)/180)*Math.PI) );
+
+                cx.lineTo(tileData.center.x + that.itemSize/5*Math.cos(((that.angle+300)/180)*Math.PI) , tileData.center.y + that.itemSize/5*Math.sin(((that.angle+300)/180)*Math.PI) );
+
+                cx.fillStyle = "rgba(0,0,0,1)";
+                cx.fill();
+                
+                cx.beginPath();
+                cx.moveTo(tileData.center.x + that.itemSize/4*tempSqrt*Math.cos((that.angle/180)*Math.PI) , tileData.center.y + that.itemSize/4*tempSqrt*Math.sin((that.angle/180)*Math.PI) );
+                cx.lineTo(tileData.center.x + that.itemSize/4*tempSqrt*Math.cos(((that.angle+ 120)/180)*Math.PI) , tileData.center.y + that.itemSize/4*tempSqrt*Math.sin(((that.angle+ 120)/180)*Math.PI) );
+                cx.lineTo(tileData.center.x + that.itemSize/4*tempSqrt*Math.cos(((that.angle+ 240)/180)*Math.PI) , tileData.center.y + that.itemSize/4*tempSqrt*Math.sin(((that.angle + 240)/180)*Math.PI) );
+                cx.fillStyle = "rgba(255,255,255,1)";
+                cx.fill();
+                for (j=0;j<3;j++){
+                 cx.beginPath();
+                 cx.moveTo(tileData.center.x,tileData.center.y);
+                 cx.lineTo(tileData.center.x + (that.itemSize/4)*tempSqrt*Math.cos(((that.angle + j*120)/180)*Math.PI) , tileData.center.y + (that.itemSize/4)*tempSqrt*Math.sin(((that.angle + j*120)/180)*Math.PI) );
+                 cx.strokeStyle = "rgba(100,100,100,1)";
+                 cx.stroke();
+                }
+// //end draw combinateur
 
 		// ======== Laser Debug Draw ===========
 
@@ -60,14 +101,14 @@ function DecomposorTile(id, s, px, py)
                 outer   : tileData.outer,
                 context : tileData.context,
                 color   : "#FF0000", 
-                that.angle   : that.that.angle  
+                that.that.angle   : that.that.that.angle  
         });
         that.drawLaser({
                 center  : tileData.center,
                 outer   : tileData.outer,
                 context : tileData.context,
                 color   : "#FF0000", 
-                that.angle   : that.that.angle + Math.PI  
+                that.that.angle   : that.that.that.angle + Math.PI  
         });*/
 
 
@@ -205,8 +246,8 @@ function DecomposorTile(id, s, px, py)
 
         
 
-    	//console.log("Output Laser (Radian) : " + that.that.angleLaserOutput);
-    	//console.log("Output Laser (Degree) : " + (that.that.angleLaserOutput/Math.PI) * 180);
+    	//console.log("Output Laser (Radian) : " + that.that.that.angleLaserOutput);
+    	//console.log("Output Laser (Degree) : " + (that.that.that.angleLaserOutput/Math.PI) * 180);
 
 
 
