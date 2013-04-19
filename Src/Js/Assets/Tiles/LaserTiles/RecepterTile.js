@@ -5,24 +5,36 @@
 
     that.active = false;
     that.recepterColor;
+    that.angle = 0;
 
     that.Render = function (tileData)
     {
         var cx = tileData.context;
+        var size = tileData.outer*1.5;
 
         cx.stroke();
 
         cx.fillStyle = that.recepterColor;
 
-        cx.beginPath();
-        cx.moveTo(tileData.center.x + tileData.inner * .6 * Math.cos(0 - Math.PI / 6), tileData.center.y + tileData.inner * .6 * Math.sin(0 - Math.PI / 6));
+        // cx.beginPath();
+        // cx.moveTo(tileData.center.x + tileData.inner * .6 * Math.cos(0 - Math.PI / 6), tileData.center.y + tileData.inner * .6 * Math.sin(0 - Math.PI / 6));
 
-        for (var i = 0; i < 3; i++)
+        // for (var i = 0; i < 3; i++)
+        // {
+        //     cx.lineTo(tileData.center.x + tileData.inner * .6 * Math.cos(i * Math.PI * 2 / 3 - Math.PI / 6), tileData.center.y + tileData.inner * .6 * Math.sin(i * Math.PI * 2 / 3 - Math.PI / 6));
+        // };
+
+        // cx.fill();
+        for(i=0;i<6;i++)
         {
-            cx.lineTo(tileData.center.x + tileData.inner * .6 * Math.cos(i * Math.PI * 2 / 3 - Math.PI / 6), tileData.center.y + tileData.inner * .6 * Math.sin(i * Math.PI * 2 / 3 - Math.PI / 6));
-        };
+            cx.beginPath()
+            cx.arc(tileData.center.x, tileData.center.y, size/3 ,that.angle+i*Math.PI/3+Math.PI/20,that.angle+(i+1)*Math.PI/3-Math.PI/20, false);
+            cx.lineTo(tileData.center.x + size/3*220/250*Math.cos(that.angle+(i+1)*Math.PI/3-Math.PI/20),tileData.center.y + size/3*220/250*Math.sin(that.angle+(i+1)*Math.PI/3-Math.PI/20));
+            cx.lineTo(tileData.center.x + size/3*220/250*Math.cos(that.angle+i*Math.PI/3+Math.PI/20),tileData.center.y + size/3*220/250*Math.sin(that.angle+i*Math.PI/3+Math.PI/20));
+            cx.fill();
+        }
 
-        cx.fill();
+        that.angle -= Math.PI/200;
 
         that.drawLaser(that.laser, tileData);
     }
