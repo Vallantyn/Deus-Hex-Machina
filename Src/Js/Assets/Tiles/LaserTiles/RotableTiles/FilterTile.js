@@ -2,14 +2,16 @@ function FilterTile(id, s, px, py)
 {
     var that = new RotableTile(id, s, px, py);
 
-    that.filterColor = "#0000AA";
+    that.filterColor = "#FF00FF";
     that.emission = false;
+    var laserInput;
+    var laserOutput;
 
     that.Render = function (tileData)
     {
         var cx = tileData.context;
 
-        that.onLaser({angle : Math.PI/6, color : "#0000FF"});
+        that.onLaser({angle : Math.PI/6, color : "#FFFFFF"});
         
 
 
@@ -18,24 +20,29 @@ function FilterTile(id, s, px, py)
 
 		that.mirrorSize= tileData.outer;
 
-		//draw mirror
+		//draw Filter
+        that.itemSize = tileData.outer;
 		var tempSqrt = (Math.sqrt(2)/2);
-		cx.beginPath()
-		cx.arc(tileData.center.x - that.mirrorSize* tempSqrt  *Math.cos(that.angle), tileData.center.y - that.mirrorSize*tempSqrt*Math.sin(that.angle), that.mirrorSize, (-45/180)*Math.PI + that.angle, (45/180)*Math.PI + that.angle, false);
-		cx.fillStyle = "rgba(255,50,50,1)";
-		cx.fill();
-		cx.beginPath()
-		cx.arc(tileData.center.x - (that.mirrorSize-20*that.mirrorSize/250)*tempSqrt*Math.cos(that.angle), tileData.center.y - (that.mirrorSize-20*that.mirrorSize/250)*tempSqrt*Math.sin(that.angle), that.mirrorSize - 20*that.mirrorSize/250 , (-45/180)*Math.PI + that.angle, (45/180)*Math.PI + that.angle, false);
-		cx.fillStyle = "rgba(150,150,150,1)";
-		cx.fill();
-		cx.beginPath()
-		cx.arc(tileData.center.x - (that.mirrorSize-40*that.mirrorSize/250)*tempSqrt*Math.cos(that.angle), tileData.center.y - (that.mirrorSize-40*that.mirrorSize/250)*tempSqrt*Math.sin(that.angle), that.mirrorSize - 40*that.mirrorSize/250 , (-45/180)*Math.PI + that.angle, (45/180)*Math.PI + that.angle, false);
-		cx.fillStyle = "rgba(200,200,200,1)";
-		cx.fill();
-		cx.beginPath()
-		cx.arc(tileData.center.x - (that.mirrorSize-60*that.mirrorSize/250)*tempSqrt*Math.cos(that.angle), tileData.center.y - (that.mirrorSize-60*that.mirrorSize/250)*tempSqrt*Math.sin(that.angle), that.mirrorSize - 60*that.mirrorSize/250 , (-45/180)*Math.PI + that.angle, (45/180)*Math.PI + that.angle, false);
-		cx.fillStyle = "rgba(255,255,255,1)";
-		cx.fill();
+		var red = 0;
+        var green = 255;
+        var blue = 0;
+
+        cx.beginPath();
+        cx.moveTo(tileData.center.x + that.itemSize/2*Math.cos(that.angle-Math.PI/10+Math.PI+Math.PI/2),tileData.center.y + that.itemSize/2*Math.sin(that.angle-Math.PI/10+Math.PI+Math.PI/2   ));
+        cx.lineTo(tileData.center.x + that.itemSize/2*Math.cos(that.angle+Math.PI/10+Math.PI/2),tileData.center.y + that.itemSize/2*Math.sin(that.angle+Math.PI/10+Math.PI/2));
+        cx.lineTo(tileData.center.x + that.itemSize/2*Math.cos(that.angle-Math.PI/10+Math.PI/2),tileData.center.y + that.itemSize/2*Math.sin(that.angle-Math.PI/10+Math.PI/2));
+        cx.lineTo(tileData.center.x + that.itemSize/2*Math.cos(that.angle+Math.PI/10+Math.PI+Math.PI/2),tileData.center.y + that.itemSize/2*Math.sin(that.angle+Math.PI/10+Math.PI+Math.PI/2));
+        cx.fillStyle = "rgba("+red+","+green+","+blue+",0.8)";
+        cx.fill();
+
+        cx.beginPath();
+        cx.arc(tileData.center.x - (that.itemSize+10*that.itemSize/250)*Math.cos(that.angle), tileData.center.y - (that.itemSize+10*that.itemSize/250)*Math.sin(that.angle), that.itemSize, (-30/180)*Math.PI + that.angle, (30/180)*Math.PI + that.angle, false);
+        cx.fillStyle = "rgba(0,0,0,1)";
+        cx.fill();
+        cx.beginPath();
+        cx.arc(tileData.center.x - (that.itemSize+10*that.itemSize/250)*Math.cos(that.angle+Math.PI), tileData.center.y - (that.itemSize+10*that.itemSize/250)*Math.sin(that.angle+Math.PI), that.itemSize, (-30/180)*Math.PI + that.angle + Math.PI, (30/180)*Math.PI + that.angle + Math.PI, false);
+        cx.fillStyle = "rgba(0,0,0,1)";
+        cx.fill();
 
 
 
@@ -65,7 +72,7 @@ function FilterTile(id, s, px, py)
             center  : tileData.center,
             outer   : tileData.outer,
             context : tileData.context,
-            color   : "#00FF00", 
+            color   : "#FFFFFF", 
             angle   : Math.PI/6 - Math.PI
         });
 
@@ -115,6 +122,17 @@ function FilterTile(id, s, px, py)
         }
         
         that.colorOutput = colorOutput;
+
+        laserInput = laserData;
+         laserOutput = {
+            from: that.id,
+            to: laserData.to,
+            color: colorOutput
+        };
+
+
+        //this.emitLaser(laserOutput);
+         
 
 
     	

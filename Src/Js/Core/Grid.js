@@ -170,13 +170,14 @@
                     {
                         var t;
 
-                        if (j == 2)
-                            t = new MirrorTile(tiles.length, tSize, _x, _y);
+                        if (j == 4)
+                            t = new SpliterTile(tiles.length, tSize, _x, _y);
                         else if (tiles.length == 42)
                         {
                             t = new EmitterTile({ color: "#FF0000", direction: 5 }, tiles.length, tSize, _x, _y);
                         }
                         else t = new LaserTile(tiles.length, tSize, _x, _y);
+
 
                         t.emitLaser = emitLaser;
                         t.updateTileClass = updateTileClass;

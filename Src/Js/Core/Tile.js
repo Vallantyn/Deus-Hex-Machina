@@ -172,8 +172,11 @@
 
             onLaser: function (laserData)
             {
+
+
                 console.log("TileOnLaser");
                 //laser = laserData;
+
 
                 //laser.from = id;
 

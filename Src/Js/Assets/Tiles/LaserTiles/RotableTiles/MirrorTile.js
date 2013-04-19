@@ -17,6 +17,7 @@
         if (that.over) cx.fill();
         cx.stroke();
 
+
         that.mirrorSize = tileData.outer;
 
         //draw mirror
@@ -47,6 +48,7 @@
         mirrorAngle++;
         mirrorAngle %= 12;
     }
+
 
     that.onRightClick = function ()
     {
@@ -104,14 +106,14 @@
                 {
                     laserOutput.to = laserFrom;
                 }
-                this.emitLaser(laserOutput);
-            }
+        this.emitLaser(laserOutput);
+    }
         }
     }
 
     that.drawLaser = function (laserData, tileData)
     {
-        if (!laserInput) return;
+        if (!laserData) return;
 
         var cx = tileData.context;
 
@@ -133,7 +135,7 @@
             cx.globalAlpha = 1;
         }
 
-        laserInput = null;
+        laserData = null;
     }
 
     //that.emitLaser = function ()
