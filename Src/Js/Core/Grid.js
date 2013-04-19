@@ -312,7 +312,7 @@
 
     function checkCompletion()
     {
-        if (!!that.recepters) return false;
+        if (that.recepters.length == 0) return false;
 
         for (var i = 0; i < that.recepters.length; i++)
         {
