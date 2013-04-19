@@ -52,7 +52,7 @@
         that.laser = null;
     }
 
-    that.SelfUpate()
+    that.SelfUpdate = function()
     {
         that.active = false;
     }

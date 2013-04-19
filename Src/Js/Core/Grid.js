@@ -230,7 +230,7 @@
                         else
                         {
                             t = new window[gTiles[tiles.length].type + "Tile"](tiles.length, tSize, _x, _y);
-                            
+
                             for (var o in gTiles[tiles.length])
                             {
                                 if (o != "type")
@@ -281,7 +281,22 @@
                     tiles[i].Update();
                 }
 
-                if (console.log) "Yataa !";
+                if (checkCompletion() && !ended)
+                {
+                    ended = true;
+                    var progress = sessionStorage.getItem("playerProgress");
+                    if (!progress)
+                    {
+                        progress = 1
+                    } else progress++;
+
+                    sessionStorage.setItem("playerProgress", progress);
+
+                    setTimeout(function ()
+                    {
+                        Director.changeScene(new LevelSelectorView());
+                    }, 2500);
+                };
             },
 
             Draw: function ()
@@ -293,15 +308,19 @@
             }
         }
 
+    var ended = false;
+
     function checkCompletion()
     {
+        if (!!that.recepters) return false;
+
         for (var i = 0; i < that.recepters.length; i++)
         {
             if (!that.recepters[i].active) return false;
         }
         return true;
     }
-    
+
 
     return that;
 }

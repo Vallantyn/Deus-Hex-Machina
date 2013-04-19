@@ -28,10 +28,16 @@
         for (var i = 0; i < Levels.length; i++)
         {
             var level = Levels[i];
-            UI.TileButton(level.name, w, sx + w * 3 / 2 * (i % 8), offsetY + sy + h * 2 * Math.floor(i / 8) + h * (i % 2), function ()
+            if (progression >= i)
             {
-                Director.changeScene(new GameView(level));
-            }, { lineWidth: 4, textBaseline: "middle", font: "24px Fury" });
+                UI.TileButton(level.name, w, sx + w * 3 / 2 * (i % 8), offsetY + sy + h * 2 * Math.floor(i / 8) + h * (i % 2), function ()
+                {
+                    Director.changeScene(new GameView(level));
+                }, { lineWidth: 4, textBaseline: "middle", font: "24px Fury" });
+            } else
+            {
+                UI.TileButton(level.name, w, sx + w * 3 / 2 * (i % 8), offsetY + sy + h * 2 * Math.floor(i / 8) + h * (i % 2), null, { lineWidth: 4, textBaseline: "middle", fillStyle: "#444", font: "24px Fury" });
+            }
         }
     }
 

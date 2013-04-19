@@ -10,6 +10,24 @@
                     type: "Emitter",
                     emitterColor: "#FF0000",
                     direction: 5
+                },
+                10:
+                {
+                    type: "Recepter",
+                    recepterColor: "#FF0000"
+                    //direction: 5
+                },
+                21:
+                {
+                    type: "Emitter",
+                    emitterColor: "#00FF00",
+                    direction: 5
+                },
+                5:
+                {
+                    type: "Recepter",
+                    recepterColor: "#00FF00"
+                    //direction: 5
                 }//,
                 //31:
                 // {

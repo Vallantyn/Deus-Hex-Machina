@@ -13,21 +13,20 @@
         {
             grid = new Grid(4);
             shelf = new Shelf([
-
-                { type: "Empty" },
-                { type: "Block" },
-                { type: "Emitter", color: "#FF0000" },
-                { type: "Emitter", color: "#00FF00" },
-                { type: "Emitter", color: "#0000FF" },
-                { type: "Recepter", color: "#FF0000" },
-                { type: "Recepter", color: "#00FF00" },
-                { type: "Recepter", color: "#0000FF" },
-                { type: "Mirror" },
-                { type: "Spliter" },
-                { type: "Filter", color: "#FF0000" },
-                { type: "Filter", color: "#00FF00" },
-                { type: "Filter", color: "#0000FF" },
-                { type: "Decomposor" }
+                { type: "Empty" , count: 99},
+                { type: "Block", count: 99 },
+                { type: "Emitter", color: "#FF0000", count: 99 },
+                { type: "Emitter", color: "#00FF00", count: 99 },
+                { type: "Emitter", color: "#0000FF", count: 99 },
+                { type: "Recepter", color: "#FF0000", count: 99 },
+                { type: "Recepter", color: "#00FF00", count: 99 },
+                { type: "Recepter", color: "#0000FF", count: 99 },
+                { type: "Mirror", count: 99 },
+                { type: "Spliter", count: 99 },
+                { type: "Filter", color: "#FF0000", count: 99 },
+                { type: "Filter", color: "#00FF00", count: 99 },
+                { type: "Filter", color: "#0000FF", count: 99 },
+                { type: "Decomposor", count: 99 }
             ], true);
         }
         else
