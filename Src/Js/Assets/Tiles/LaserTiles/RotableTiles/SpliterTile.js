@@ -73,6 +73,7 @@ function SpliterTile(id, s, px, py)
 
         that.drawLaser(laserInput, tileData);
 
+
         that.drawLaser(that.laser1, tileData);
 
         that.drawLaser(that.laser2, tileData);
@@ -104,6 +105,7 @@ function SpliterTile(id, s, px, py)
 
             cx.globalAlpha = 1;
         }
+        laserData = null;
 
     }
  	that.onLaser = function (laserData)

@@ -34,7 +34,8 @@ function RotableTile(id, s, px, py)
         if(that.angle >= 2 * Math.PI || that.angle <= -2 * Math.PI) 
             that.angle = 0;
 
-        console.log(that.angle)
+        var t = that.angle / (Math.PI/6);
+        console.log(t)
 
     }
 
