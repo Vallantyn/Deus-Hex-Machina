@@ -2,9 +2,9 @@ function SpliterTile(id, s, px, py)
 {
     var that = new RotableTile(id, s, px, py);
 
-    that.that.angleLaserOutput = 0;
+    that.angleLaserOutput = 0;
     that.reflection = false;
-    that.deltathat.angle = Math.PI/3;
+    that.deltaAngle = Math.PI/3;
 
     that.Render = function (tileData)
     {
@@ -64,7 +64,7 @@ function SpliterTile(id, s, px, py)
             outer   : tileData.outer,
             context : tileData.context,
             color   : "#00FF00", 
-            that.angle   : Math.PI/6 - Math.PI
+            angle   : Math.PI/6 - Math.PI
         });
 
        	if(that.reflection){
@@ -75,7 +75,7 @@ function SpliterTile(id, s, px, py)
                 outer   : tileData.outer,
                 context : tileData.context,
                 color   : "#0000FF", 
-                that.angle   : that.that.angleLaserOutput + Math.PI/2 
+                angle   : that.that.angleLaserOutput + Math.PI/2 
             });
 
         }
@@ -86,19 +86,33 @@ function SpliterTile(id, s, px, py)
 
  	that.onLaser = function (laserData)
     {
-    	//rad/pi * 180 = deg
-    	//deg/180 * pi = rad
-    	//var that.angleInRad = (that.that.angle / Math.PI) * 180;
+
+
+        var laser = {};
+        var laser2 = {};
+        laserData.from = id;
+
+        for(var o in laserData)
+        {
+            laser[o] = laserData[o];
+            laser2[o] = laserData[o]; 
+        }
+       
+        var laserFrom = (laserData.to+3)%6;
+        console.log(laserFrom)
+
+        laser.to = laserFrom + 2 ; 
+        laser2.to = laserFrom - 2;
+        laser.to > 5?laser.to-=6:null;
+        laser2.to < 0?laser2.to+=6:null;
+        console.log( laser2.to + "   " + laser.to)
+
+        that.emitLaser(laser);
+        that.emitLaser(laser2);
+        
+
 
         
-        var from = laserData.from;
-        console.log(laserData)
-        laserData.to += 2;
-        laserData.from = that.id;
-        that.emitLaser(laserData);
-
-        laserData.to -= 4;
-        //that.emitLaser(laserData);
 
     	//console.log("Output Laser (Radian) : " + that.that.angleLaserOutput);
     	//console.log("Output Laser (Degree) : " + (that.that.angleLaserOutput/Math.PI) * 180);
