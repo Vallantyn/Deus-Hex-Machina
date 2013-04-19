@@ -22,8 +22,6 @@ function FilterTile(id, s, px, py)
         if (that.over) cx.fill();
         cx.stroke();
 
-		that.mirrorSize= tileData.outer;
-
 		//draw Filter
         that.itemSize = tileData.outer;
 		var tempSqrt = (Math.sqrt(2)/2);
