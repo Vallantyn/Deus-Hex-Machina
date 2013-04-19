@@ -39,6 +39,8 @@
                 {
                     if (items[i].count > 0)
                     {
+                        var color = items[i].filterColor || items[i].recepterColor || items[i].emitterColor;
+
                         UI.TileButton(items[i].type, w, ox + w * 3 / 2 * (i % 2), oy + h * 2 * Math.floor(i / 2) + h * (i % 2), function ()
                         {
 
@@ -60,7 +62,7 @@
                             if (items[i].type == "Filter") Input.callbackArgs = { filterColor: items[i].filterColor };
                             else if (items[i].type == "Emitter") Input.callbackArgs = { emitterColor: items[i].emitterColor };
                             else if (items[i].type == "Recepter") Input.callbackArgs = { recepterColor: items[i].recepterColor };
-                        }, { lineWidth: 4, textBaseline: "middle", font: "12pt Fury", fillStyle: !!items[i].color ? items[i].color : "#CCC" });
+                        }, { lineWidth: 4, textBaseline: "middle", font: "12pt Fury", fillStyle: !!color ? color : "#CCC" });
 
                         var _x = ScreenCanvas.Context.measureText("x" + items[i].count).width / 2;
 

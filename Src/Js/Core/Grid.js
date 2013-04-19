@@ -304,13 +304,18 @@
                 if (checkCompletion() && !ended && !DEV)
                 {
                     ended = true;
-                    var progress = sessionStorage.getItem("playerProgress");
-                    if (!progress)
-                    {
-                        progress = 1
-                    } else progress++;
+                    var progress;
 
-                    sessionStorage.setItem("playerProgress", progress);
+                    if (typeof (sessionStorage) !== "undefined")
+                    {
+                        progress = sessionStorage.getItem("playerProgress");
+                        if (!progress)
+                        {
+                            progress = 1
+                        } else progress++;
+
+                        sessionStorage.setItem("playerProgress", progress);
+                    }
 
                     setTimeout(function ()
                     {
