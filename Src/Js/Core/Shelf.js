@@ -1,6 +1,6 @@
-﻿function Shelf(itemArray)
+﻿function Shelf(itemArray, dev)
 {
-    var items = itemArray;
+    var items = dev ? itemArray : Object.keys(itemArray);
     var shelf = [];
 
     var ox, oy;
@@ -13,33 +13,18 @@
             Start: function ()
             {
                 ox = ScreenCanvas.Canvas.width * 5 / 6;
-                oy = ScreenCanvas.Canvas.height / 2 - ((typeof(items) == "array" ? items.length: Object.keys(items).length) / 2 * h);
+                oy = ScreenCanvas.Canvas.height / 2 - (items.length / 2 * h);
             },
 
             Update: function ()
             {
-                if (typeof (items) == "array")
-                    for (var i = 0; i < items.length; i++)
-                    {
-                        console.log("String Array");
-                        UI.TileButton(items[i], w, ox + w * 3 / 2 * (i % 2), oy + h * 2 * Math.floor(i / 2) + h * (i % 2), function ()
-                        {
-                            Input.mode = "ADDITION";
-                            Input.additionCallback = window[items[i] + "Tile"];
-                        }, { lineWidth: 4, textBaseline: "middle", font: "12pt Fury" });
-                    }
-                else if (typeof (items) == "object")
+                for (var i = 0; i < items.length; i++)
                 {
-                    var i = 0;
-                    for (var o in items)
+                    UI.TileButton(items[i], w, ox + w * 3 / 2 * (i % 2), oy + h * 2 * Math.floor(i / 2) + h * (i % 2), function ()
                     {
-                        UI.TileButton(o, w, ox + w * 3 / 2 * (i % 2), oy + h * 2 * Math.floor(i / 2) + h * (i % 2), function ()
-                        {
-                            Input.mode = "ADDITION";
-                            Input.additionCallback = window[o + "Tile"];
-                        }, { lineWidth: 4, textBaseline: "middle", font: "12pt Fury" });
-                        i++
-                    }
+                        Input.mode = "ADDITION";
+                        Input.additionCallback = window[items[i] + "Tile"];
+                    }, { lineWidth: 4, textBaseline: "middle", font: "12pt Fury" });
                 }
 
             },

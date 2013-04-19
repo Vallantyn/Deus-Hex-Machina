@@ -17,8 +17,10 @@
                 "Block",
                 "Laser",
                 "Filter",
-                "Spliter"
-            ]);
+                "Spliter",
+                "Emitter",
+                "Decomposor"
+            ], true);
         }
         else
         {
