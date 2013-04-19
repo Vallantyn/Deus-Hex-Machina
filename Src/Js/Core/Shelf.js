@@ -1,7 +1,18 @@
 ﻿function Shelf(itemArray, dev)
 {
     var items = []
-    items = itemArray;
+
+    for (var i = 0; i < itemArray.length; i++)
+    {
+        var item = {};
+        for (var o in itemArray[i])
+        {
+            item[o] = itemArray[i][o];
+        }
+
+        items.push(item);
+    }
+
     var shelf = [];
 
     var ox, oy;

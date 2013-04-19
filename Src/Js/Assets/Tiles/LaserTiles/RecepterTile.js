@@ -7,6 +7,8 @@
     that.recepterColor;
     that.angle = 0;
 
+    var laser;
+
     that.Render = function (tileData)
     {
         var cx = tileData.context;
@@ -36,7 +38,9 @@
 
         that.angle -= Math.PI/200;
 
-        that.drawLaser(that.laser, tileData);
+        that.drawLaser(laser, tileData);
+        laser = null;
+        that.active = false;
     }
 
     that.drawLaser = function (laserData, tileData)
@@ -47,26 +51,33 @@
 
         for (var i = 1; i < 4; i++)
         {
+
             cx.lineWidth = i * 4;
             cx.globalAlpha = 1 / (i * 2);
             cx.strokeStyle = laserData.color;
 
-            var a = (3-that.direction) * (Math.PI / 3) + Math.PI/6;
+            var a = (3 - laserData.to) * Math.PI / 3 + Math.PI / 6;
 
             cx.beginPath();
-            cx.moveTo(tileData.center.x, tileData.center.y);
-            cx.lineTo(tileData.center.x + tileData.inner * Math.cos(a), tileData.center.y + tileData.inner * Math.sin(a));
+            cx.moveTo(tileData.center.x + tileData.inner * Math.cos(a), tileData.center.y + tileData.inner * Math.sin(a));
+            cx.lineTo(tileData.center.x + tileData.inner * Math.cos(a - Math.PI), tileData.center.y + tileData.inner * Math.sin(a - Math.PI));
             cx.stroke();
 
             cx.globalAlpha = 1;
         }
-
-        that.laser = null;
     }
 
     that.onLaser = function (laserData)
     {
-        that.active = this.onRecepter(laserData, { color: that.recepterColor });
+        var l = {};
+        l.from = that.id;
+        l.to = laserData.to;
+        l.color = laserData.color;
+
+        laser = l;
+
+        this.emitLaser(laser);
+        that.active = this.onRecepter(l, { color: that.recepterColor });
     }
 
     that.onLeftClick = function ()
