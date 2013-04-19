@@ -11,7 +11,7 @@
     {
         if (DEV)
         {
-            grid = new Grid(4);
+            grid = new Grid(4, null, DEV);
             shelf = new Shelf([
                 { type: "Empty" , count: 99},
                 { type: "Block", count: 99 },
@@ -27,12 +27,12 @@
                 { type: "Filter", color: "#00FF00", count: 99 },
                 { type: "Filter", color: "#0000FF", count: 99 },
                 { type: "Decomposor", count: 99 }
-            ], true);
+            ], DEV);
         }
         else
         {
-            grid = new Grid(level.size, level.tiles);
-            shelf = new Shelf(level.shelf);
+            grid = new Grid(level.size, level.tiles, DEV);
+            shelf = new Shelf(level.shelf, DEV);
         }
 
         grid.Start();

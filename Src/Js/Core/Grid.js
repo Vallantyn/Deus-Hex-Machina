@@ -1,4 +1,4 @@
-﻿function Grid(gridSize, gridTiles)
+﻿function Grid(gridSize, gridTiles, DEV)
 {
     var tiles, gSize, gTiles, tSize;
 
@@ -301,9 +301,7 @@
                     tiles[i].Update();
                 }
 
-                console.log(checkCompletion());
-
-                if (checkCompletion() && !ended)
+                if (checkCompletion() && !ended && !DEV)
                 {
                     ended = true;
                     var progress = sessionStorage.getItem("playerProgress");
