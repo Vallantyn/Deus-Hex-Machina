@@ -70,17 +70,5 @@
         return;
     }
 
-    that.onLeftClick = function ()
-    {
-        that.direction++;
-        that.direction %= 6;
-    }
-
-    that.onRightClick = function ()
-    {
-        that.direction--;
-        if (that.direction < 0) that.direction = 5;
-    }
-
     return that;
 }

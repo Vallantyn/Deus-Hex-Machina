@@ -57,6 +57,22 @@
             }
         }
 
+        if (T.emitterColor)
+        {
+
+            T.onLeftClick = function ()
+            {
+                T.direction++;
+                T.direction %= 6;
+            }
+
+            T.onRightClick = function ()
+            {
+                T.direction--;
+                if (T.direction < 0) T.direction = 5;
+            }
+        }
+
         Input.shelfDecrease();
 
         T.onRecepter = onRecepter;
