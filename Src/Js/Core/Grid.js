@@ -38,6 +38,18 @@
 
     */
 
+    function updateTileClass(id)
+    {
+        var t = tiles[id];
+        var x = t.x;
+        var y = t.y;
+
+        var T = new Input.additionCallback(id, tSize, x, y);
+        T.emitLaser = emitLaser;
+        T.updateTileClass = updateTileClass;
+        tiles[id] = T;
+    }
+
     function emitLaser(laserData)
     {
         var id = laserData.from;
@@ -146,6 +158,7 @@
 
                 var t = new LaserTile(tiles.length, tSize, _x, _y);
                 t.emitLaser = emitLaser;
+                t.updateTileClass = updateTileClass;
 
                 tiles.push(t);
 
@@ -167,6 +180,7 @@
 
 
                         t.emitLaser = emitLaser;
+                        t.updateTileClass = updateTileClass;
 
                         tiles.push(t);
 

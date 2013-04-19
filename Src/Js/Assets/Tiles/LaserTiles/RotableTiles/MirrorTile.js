@@ -1,5 +1,6 @@
 ﻿function MirrorTile(id, s, px, py)
 {
+    console.log("new mirror tile");
     var that = new RotableTile(id, s, px, py);
 
     that.angleLaserOutput = 0;
@@ -14,10 +15,6 @@
     {
         var cx = tileData.context;
 
-        //that.onLaser({angle : Math.PI/6});
-
-
-
         if (that.over) cx.fill();
         cx.stroke();
 
@@ -25,6 +22,7 @@
         that.mirrorSize = tileData.outer;
 
         //draw mirror
+        that.angle = (12-mirrorAngle)*Math.PI/6;
         var tempSqrt = (Math.sqrt(2) / 2);
         cx.beginPath()
         cx.arc(tileData.center.x - that.mirrorSize * tempSqrt * Math.cos(that.angle), tileData.center.y - that.mirrorSize * tempSqrt * Math.sin(that.angle), that.mirrorSize, (-45 / 180) * Math.PI + that.angle, (45 / 180) * Math.PI + that.angle, false);
@@ -98,46 +96,60 @@
     that.onLeftClick = function ()
     {
         mirrorAngle++;
-        mirrorAngle %= 6;
+        mirrorAngle %= 12;
     }
 
 
+    that.onRightClick = function ()
+    {
+        mirrorAngle--;
+        if (mirrorAngle==-1)
+            mirrorAngle=11;
+    }
+
     that.onLaser = function (laserData)
     {
-        //rad/pi * 180 = deg
-        //deg/180 * pi = rad
-        //var angleInRad = (that.angle / Math.PI) * 180;
-        //var angleLaserInput = laserData.angle;
-        //var angleLaserMirror = (that.angle - angleLaserInput);
+        var laserInput = laserData;
+        var laserOutput = laserData;
+        var laserFrom = (laserInput.to+3)%6;
 
-
-        //if(angleLaserMirror >= Math.PI/2 || angleLaserMirror <= -Math.PI/2)
-        //	that.reflection = false;
-        //else
-        //	that.reflection = true;
-
-        ////console.log("Mirror Angle : " + that.angle)
-        ////console.log("Entry Laser : " + angleLaser)
-        ////console.log("Angle Laser / Mirror : " + angleLaserMirror)
-
-        //that.angleLaserOutput = Math.PI - (that.angle + angleLaserMirror);
-
-
-        ////console.log("Output Laser (Radian) : " + that.angleLaserOutput);
-        ////console.log("Output Laser (Degree) : " + (that.angleLaserOutput/Math.PI) * 180);
-
-        laserInput = laserData;
-        laserOutput = {};
-        //that.laser = laserInput;
+        that.laser = laserInput;
 
         laserOutput.from = that.id;
-
-        var to = (laserData.to + mirrorAngle) % 6;
-
-        laserOutput.to = to;
-        laserOutput.color = laserData.color;
-
+        if (mirrorAngle%2 == 0)
+        {
+            if (mirrorAngle/2 == laserFrom || (mirrorAngle/2+1)%6 == laserFrom)
+            {
+                if(mirrorAngle/2 == laserFrom)
+                {
+                    laserOutput.to = (laserFrom+1)%6;
+                }
+                else
+                {
+                    laserOutput.to = (laserFrom+5)%6;
+                }
+                this.emitLaser(laserOutput);
+            }
+        }
+        else
+        {
+            if ( ((mirrorAngle+1)/2)%6 == laserFrom || ((mirrorAngle+1)/2+1)%6 == laserFrom || ((mirrorAngle+1)/2-1)%6 == laserFrom )
+            {
+                if(((mirrorAngle+1)/2+1)%6 == laserFrom)
+                {
+                    laserOutput.to = (laserFrom+4)%6;
+                }
+                else if(((mirrorAngle-1)/2)%6 == laserFrom)
+                {
+                    laserOutput.to = (laserFrom+2)%6;
+                }
+                else
+                {
+                    laserOutput.to = laserFrom;
+                }
         this.emitLaser(laserOutput);
+    }
+        }
     }
 
     that.drawLaser = function (laserData, tileData)
@@ -171,8 +183,6 @@
     //{
 
     //}
-
-
 
     return that;
 }

@@ -136,7 +136,6 @@ function SpliterTile(id, s, px, py)
 
         
         
-        laserInput = that.laser1;
 
 
         
