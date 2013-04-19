@@ -5,9 +5,9 @@
     right: false,
     left: false,
     release: true,
-    mode : "ACTION",
+    mode: "ACTION",
 
-    Update: function()
+    Update: function ()
     {
         if (Input.right) Input.right = false;
         if (Input.left) Input.left = false;
@@ -24,11 +24,11 @@
         Input.y = (Math.max(Math.min(event.clientY - bounds.top, bounds.height), 0)) / bounds.height * ScreenCanvas.Canvas.height;
     },
 
-    onMouseDown: function(event)
+    onMouseDown: function (event)
     {
         /// <summary>Mouse Move Event</summary>
         /// <param name="event" type="MouseEvent">Mouse Move Event</param>
-        
+
         event.preventDefault();
 
         Input.release = false;
@@ -48,6 +48,9 @@
 
     additionCallback: function () { },
     callbackArgs: {},
+
+    shelfDecrease: function () { },
+    shelfIncrease: function () { },
 
     onMouseUp: function (event)
     {

@@ -93,6 +93,8 @@
 
             },
 
+            onDelete: function() {},
+
             Draw: function ()
             {
                 var cx = ScreenCanvas.Context;

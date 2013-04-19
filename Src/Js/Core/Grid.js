@@ -57,10 +57,15 @@
             }
         }
 
+        Input.shelfDecrease();
+
         T.onRecepter = onRecepter;
 
         T.emitLaser = emitLaser;
         T.updateTileClass = updateTileClass;
+        T.onDelete = Input.shelfIncrease;
+
+        tiles[id].onDelete();
         tiles[id] = T;
     }
 
