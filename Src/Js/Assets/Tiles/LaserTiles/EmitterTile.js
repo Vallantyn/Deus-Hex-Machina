@@ -1,7 +1,10 @@
-﻿function EmitterTile(cfg, id, s, px, py)
+﻿function EmitterTile(id, s, px, py)
 {
     var that = new Tile(id, s, px, py);
-    var config = cfg;
+    //var config = cfg;
+
+    that.emitterColor;
+    that.direction = 0;
 
     that.Render = function (tileData)
     {
@@ -9,7 +12,7 @@
 
         cx.stroke();
 
-        cx.fillStyle = config.color;
+        cx.fillStyle = that.emitterColor;
 
         cx.beginPath();
         cx.moveTo(tileData.center.x + tileData.inner * .6 * Math.cos(0), tileData.center.y + tileData.inner * .6 * Math.sin(0));
@@ -36,7 +39,7 @@
             cx.globalAlpha = 1 / (i * 2);
             cx.strokeStyle = laserData.color;
 
-            var a = (3-config.direction) * (Math.PI / 3) + Math.PI/6;
+            var a = (3-that.direction) * (Math.PI / 3) + Math.PI/6;
 
             cx.beginPath();
             cx.moveTo(tileData.center.x, tileData.center.y);
@@ -53,8 +56,8 @@
     {
         var laser = {
             from: that.id,
-            to: config.direction,
-            color: config.color
+            to: that.direction,
+            color: that.emitterColor
         }
 
         that.laser = laser;
@@ -69,18 +72,14 @@
 
     that.onLeftClick = function ()
     {
-        config.direction++;
-        config.direction %= 6;
-
-        console.log(config.direction);
+        that.direction++;
+        that.direction %= 6;
     }
 
     that.onRightClick = function ()
     {
-        config.direction--;
-        if (config.direction < 0) config.direction = 5;
-
-        console.log(config.direction);
+        that.direction--;
+        if (that.direction < 0) that.direction = 5;
     }
 
     return that;

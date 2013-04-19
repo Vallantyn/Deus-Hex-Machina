@@ -18,25 +18,16 @@
 
             Update: function ()
             {
-                if (dev)
-                    for (var i = 0; i < items.length; i++)
+                for (var i = 0; i < items.length; i++)
+                {
+                    UI.TileButton(items[i].type, w, ox + w * 3 / 2 * (i % 2), oy + h * 2 * Math.floor(i / 2) + h * (i % 2), function ()
                     {
-                        UI.TileButton(items[i], w, ox + w * 3 / 2 * (i % 2), oy + h * 2 * Math.floor(i / 2) + h * (i % 2), function ()
-                        {
-                            Input.mode = "ADDITION";
-                            Input.additionCallback = window[items[i] + "Tile"];
-                        }, { lineWidth: 4, textBaseline: "middle", font: "12pt Fury" });
-                    }
-                else
-                    for (var i = 0; i < items.length; i++)
-                    {
-                        UI.TileButton(items[i].type, w, ox + w * 3 / 2 * (i % 2), oy + h * 2 * Math.floor(i / 2) + h * (i % 2), function ()
-                        {
-                            Input.mode = "ADDITION";
-                            Input.additionCallback = window[items[i].type + "Tile"];
-                            if (items[i].type == "Filter") Input.callbackArgs = { color: items[i].color }
-                        }, { lineWidth: 4, textBaseline: "middle", font: "12pt Fury", fillStyle: !!items[i].color ? items[i].color : "#CCC" });
-                    }
+                        Input.mode = "ADDITION";
+                        Input.additionCallback = window[items[i].type + "Tile"];
+                        if (items[i].type == "Filter") Input.callbackArgs = { filterColor: items[i].color };
+                        else if (items[i].type == "Emitter") Input.callbackArgs = { emitterColor: items[i].color };
+                    }, { lineWidth: 4, textBaseline: "middle", font: "12pt Fury", fillStyle: !!items[i].color ? items[i].color : "#CCC" });
+                }
             },
 
             Render: function ()
