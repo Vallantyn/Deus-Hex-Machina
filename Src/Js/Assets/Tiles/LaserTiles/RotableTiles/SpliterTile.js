@@ -84,7 +84,7 @@ function SpliterTile(id, s, px, py)
 		    //that.drawLaser(laserOut2[i], tileData);
 		}
 
-		console.log(lasersOut.length);
+		//console.log(lasersOut.length);
 
 		for (var i = 0; i < lasersOut.length; i++)
 		{
@@ -120,7 +120,7 @@ function SpliterTile(id, s, px, py)
             cx.globalAlpha = 1 / (i * 2);
             cx.strokeStyle = laserData.color;
 
-            console.log(laserData.to);
+            //console.log(laserData.to);
 
             var a = (laserData.to) * (Math.PI / 3) - 5*Math.PI / 6;
 

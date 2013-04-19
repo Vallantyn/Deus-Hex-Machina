@@ -18,10 +18,13 @@
         }
         , { lineWidth: 4, textBaseline: "middle" });
 
-        for (var i = 0; i < levels; i++)
+        for (var i = 0; i < Levels.length; i++)
         {
-        	var txt = i.toString(16).toUpperCase();
-            UI.TileButton(txt.length<2?"0"+txt:txt, w, sx + w * 3/2 * (i % 8), offsetY + sy + h * 2 * Math.floor(i / 8) + h * (i % 2), null, { lineWidth: 4, textBaseline: "middle", font: "24px Fury" });
+            var level = Levels[i];
+            UI.TileButton(level.name, w, sx + w * 3 / 2 * (i % 8), offsetY + sy + h * 2 * Math.floor(i / 8) + h * (i % 2), function ()
+            {
+                Director.changeScene(new GameView(level));
+            }, { lineWidth: 4, textBaseline: "middle", font: "24px Fury" });
         }
     }
 

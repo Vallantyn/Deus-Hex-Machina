@@ -42,6 +42,7 @@
         cx.fill();
 
         that.drawLaser(laserInput, tileData);
+        laserInput = null;
     }
 
     that.onLeftClick = function ()
@@ -126,7 +127,7 @@
 
             //console.log(laserOutput.to + "|"+laserFrom);
 
-            var a = (3 - laserInput.to) * (Math.PI / 3) - 5 * Math.PI / 6;
+            var a = (3 - laserData.to) * (Math.PI / 3) - 5 * Math.PI / 6;
             var b = (3 - (laserOutput.to == ((laserFrom+3)%6) ? laserFrom-3 : laserOutput.to - 3)) * (Math.PI / 3) - 5 * Math.PI / 6;
 
             cx.beginPath();
