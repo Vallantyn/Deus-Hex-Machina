@@ -5,7 +5,10 @@
     that.angleLaserOutput = 0;
     that.reflection = false;
 
-    var mirrorAngle = 3;
+    var mirrorAngle = 0;
+
+    var laserInput;
+    var laserOutput;
 
     that.Render = function (tileData)
     {
@@ -89,7 +92,7 @@
         // =========== End Laser Debug Draw ===========
 
 
-        that.drawLaser(that.laser);
+        that.drawLaser(laserInput, tileData);
     }
 
     that.onLeftClick = function ()
@@ -123,16 +126,45 @@
         ////console.log("Output Laser (Radian) : " + that.angleLaserOutput);
         ////console.log("Output Laser (Degree) : " + (that.angleLaserOutput/Math.PI) * 180);
 
-        var laserInput = laserData;
-        var laserOutput = laserData;
-
-        that.laser = laserInput;
+        laserInput = laserData;
+        laserOutput = {};
+        //that.laser = laserInput;
 
         laserOutput.from = that.id;
-        laserOutput.to += mirrorAngle;
-        laserOutput.to %= 6;
+
+        var to = (laserData.to + mirrorAngle) % 6;
+
+        laserOutput.to = to;
+        laserOutput.color = laserData.color;
 
         this.emitLaser(laserOutput);
+    }
+
+    that.drawLaser = function (laserData, tileData)
+    {
+        if (!laserInput) return;
+
+        var cx = tileData.context;
+
+        for (var i = 1; i < 4; i++)
+        {
+            cx.lineWidth = i * 4;
+            cx.globalAlpha = 1 / (i * 2);
+            cx.strokeStyle = laserData.color;
+
+            var a = (3 - laserInput.to) * (Math.PI / 3) - 5*Math.PI / 6;
+            var b = (3 - laserInput.to + 3 - mirrorAngle) * (Math.PI / 3) - 5*Math.PI / 6;
+
+            cx.beginPath();
+            cx.moveTo(tileData.center.x + tileData.inner * Math.cos(a), tileData.center.y + tileData.inner * Math.sin(a));
+            cx.lineTo(tileData.center.x, tileData.center.y);
+            cx.lineTo(tileData.center.x + tileData.inner * Math.cos(b), tileData.center.y + tileData.inner * Math.sin(b));
+            cx.stroke();
+
+            cx.globalAlpha = 1;
+        }
+
+        laserInput = null;
     }
 
     //that.emitLaser = function ()
